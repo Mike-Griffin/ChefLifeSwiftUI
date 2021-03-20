@@ -7,11 +7,22 @@
 //
 
 import SwiftUI
+import KeychainSwift
 
 struct ContentView: View {
+    let keychain = KeychainSwift(keyPrefix: KeychainKeys.keyPrefix)
+
     
     var body: some View {
-        AuthenticationView()
+        if let token = keychain.get(KeychainKeys.token) {
+            // need to add another case that verifies that the token is valid
+            
+            // also this should go to home screen
+            Text("Home Screen coming soon")
+        }
+        else {
+            AuthenticationView()
+        }
     }
 }
 

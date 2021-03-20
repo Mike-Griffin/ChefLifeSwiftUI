@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		11FDD3AA8327E98B140AC235 /* Pods_ChefLifeSwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 950DD36D39705C83FE1CF203 /* Pods_ChefLifeSwiftUI.framework */; };
 		7F31921E2602DB9200A984EA /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F31921D2602DB9200A984EA /* LoginView.swift */; };
 		7F3192222602E2B100A984EA /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3192212602E2B000A984EA /* SignUpView.swift */; };
 		7F9C3A3C2601949800015724 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9C3A3B2601949800015724 /* AppDelegate.swift */; };
@@ -15,10 +16,13 @@
 		7F9C3A422601949A00015724 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F9C3A412601949A00015724 /* Assets.xcassets */; };
 		7F9C3A452601949A00015724 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F9C3A442601949A00015724 /* Preview Assets.xcassets */; };
 		7F9C3A482601949A00015724 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F9C3A462601949A00015724 /* LaunchScreen.storyboard */; };
+		7FA647642605AEB900C8C127 /* RecipeApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA647632605AEB900C8C127 /* RecipeApiService.swift */; };
+		7FA647692605B4B300C8C127 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA647682605B4B300C8C127 /* Token.swift */; };
 		7FE704152604586B00031979 /* AuthenticationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE704142604586B00031979 /* AuthenticationView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		34FE395423355440B0BB6F6A /* Pods-ChefLifeSwiftUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChefLifeSwiftUI.release.xcconfig"; path = "Target Support Files/Pods-ChefLifeSwiftUI/Pods-ChefLifeSwiftUI.release.xcconfig"; sourceTree = "<group>"; };
 		7F31921D2602DB9200A984EA /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		7F3192212602E2B000A984EA /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		7F9C3A382601949800015724 /* ChefLifeSwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChefLifeSwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -29,7 +33,11 @@
 		7F9C3A442601949A00015724 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		7F9C3A472601949A00015724 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7F9C3A492601949A00015724 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7FA647632605AEB900C8C127 /* RecipeApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeApiService.swift; sourceTree = "<group>"; };
+		7FA647682605B4B300C8C127 /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		7FE704142604586B00031979 /* AuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationView.swift; sourceTree = "<group>"; };
+		950DD36D39705C83FE1CF203 /* Pods_ChefLifeSwiftUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChefLifeSwiftUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B90E2869F36BB5BD3539FF7F /* Pods-ChefLifeSwiftUI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChefLifeSwiftUI.debug.xcconfig"; path = "Target Support Files/Pods-ChefLifeSwiftUI/Pods-ChefLifeSwiftUI.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,12 +45,31 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				11FDD3AA8327E98B140AC235 /* Pods_ChefLifeSwiftUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		04ED2B995AE76F67489B959B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B90E2869F36BB5BD3539FF7F /* Pods-ChefLifeSwiftUI.debug.xcconfig */,
+				34FE395423355440B0BB6F6A /* Pods-ChefLifeSwiftUI.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		2A482B832AD26B4EEB9CA720 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				950DD36D39705C83FE1CF203 /* Pods_ChefLifeSwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		7F31921C2602D98C00A984EA /* Authenticate */ = {
 			isa = PBXGroup;
 			children = (
@@ -58,6 +85,8 @@
 			children = (
 				7F9C3A3A2601949800015724 /* ChefLifeSwiftUI */,
 				7F9C3A392601949800015724 /* Products */,
+				04ED2B995AE76F67489B959B /* Pods */,
+				2A482B832AD26B4EEB9CA720 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -72,6 +101,7 @@
 		7F9C3A3A2601949800015724 /* ChefLifeSwiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				7FA647612605AE7700C8C127 /* Data Service */,
 				7F31921C2602D98C00A984EA /* Authenticate */,
 				7F9C3A3B2601949800015724 /* AppDelegate.swift */,
 				7F9C3A3D2601949800015724 /* SceneDelegate.swift */,
@@ -92,6 +122,31 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		7FA647612605AE7700C8C127 /* Data Service */ = {
+			isa = PBXGroup;
+			children = (
+				7FA647672605B46B00C8C127 /* models */,
+				7FA647622605AE9400C8C127 /* api */,
+			);
+			path = "Data Service";
+			sourceTree = "<group>";
+		};
+		7FA647622605AE9400C8C127 /* api */ = {
+			isa = PBXGroup;
+			children = (
+				7FA647632605AEB900C8C127 /* RecipeApiService.swift */,
+			);
+			path = api;
+			sourceTree = "<group>";
+		};
+		7FA647672605B46B00C8C127 /* models */ = {
+			isa = PBXGroup;
+			children = (
+				7FA647682605B4B300C8C127 /* Token.swift */,
+			);
+			path = models;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -99,9 +154,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7F9C3A4C2601949A00015724 /* Build configuration list for PBXNativeTarget "ChefLifeSwiftUI" */;
 			buildPhases = (
+				170A452E966C5E92FE0C0326 /* [CP] Check Pods Manifest.lock */,
 				7F9C3A342601949800015724 /* Sources */,
 				7F9C3A352601949800015724 /* Frameworks */,
 				7F9C3A362601949800015724 /* Resources */,
+				306C678938E253BE910F3C16 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -158,17 +215,61 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		170A452E966C5E92FE0C0326 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ChefLifeSwiftUI-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		306C678938E253BE910F3C16 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ChefLifeSwiftUI/Pods-ChefLifeSwiftUI-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ChefLifeSwiftUI/Pods-ChefLifeSwiftUI-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ChefLifeSwiftUI/Pods-ChefLifeSwiftUI-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		7F9C3A342601949800015724 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7FA647642605AEB900C8C127 /* RecipeApiService.swift in Sources */,
 				7F9C3A3C2601949800015724 /* AppDelegate.swift in Sources */,
 				7F3192222602E2B100A984EA /* SignUpView.swift in Sources */,
 				7FE704152604586B00031979 /* AuthenticationView.swift in Sources */,
 				7F9C3A3E2601949800015724 /* SceneDelegate.swift in Sources */,
 				7F31921E2602DB9200A984EA /* LoginView.swift in Sources */,
 				7F9C3A402601949800015724 /* ContentView.swift in Sources */,
+				7FA647692605B4B300C8C127 /* Token.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -302,6 +403,7 @@
 		};
 		7F9C3A4D2601949A00015724 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B90E2869F36BB5BD3539FF7F /* Pods-ChefLifeSwiftUI.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -322,6 +424,7 @@
 		};
 		7F9C3A4E2601949A00015724 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 34FE395423355440B0BB6F6A /* Pods-ChefLifeSwiftUI.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

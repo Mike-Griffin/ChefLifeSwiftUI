@@ -7,11 +7,16 @@
 //
 
 import SwiftUI
+import KeychainSwift
+
+let apiService = RecipeApiService()
+
 
 struct LoginView: View {
     @State var email = ""
     @State var password = ""
     @State var hidePassword = true
+    let keychain = KeychainSwift(keyPrefix: KeychainKeys.keyPrefix)
     
     var body: some View {
         VStack {
@@ -21,6 +26,7 @@ struct LoginView: View {
                         .foregroundColor(.black)
                     
                     TextField("Email Address", text: self.$email)
+                        .autocapitalization(.none)
                 }.padding(.vertical, 20)
                 
                 Divider()
@@ -45,6 +51,7 @@ struct LoginView: View {
                     }
                     else {
                         TextField("Password", text: self.$password)
+                            .autocapitalization(.none)
                         Button(action: {
                             hidePassword = true
                         }) {
@@ -62,7 +69,7 @@ struct LoginView: View {
             .padding(.top, 25)
             
             Button(action: {
-                
+                self.handleLogin()
             }) {
                 Text("LOGIN")
                     .foregroundColor(.white)
@@ -78,7 +85,32 @@ struct LoginView: View {
             .shadow(radius: 15)
         }
     }
+    
+    // decide if I should move this into another file...MVVM?
+    fileprivate func handleLogin() {
+        //print("do the login thing")
+        let body : [String : Any] = ["email": "\(email)", "password": "\(password)"]
+        if let jsonDataBody = try? JSONSerialization.data(withJSONObject: body) {
+            apiService.apiRequest(request: "user/token/", body: jsonDataBody, httpMethod: "POST", headerFields: ["Content-Type": "application/json; charset=utf-8"], useToken: false) { (results : Result<Token, Error>) in
+                switch(results) {
+                case .success(let result):
+                    DispatchQueue.main.async {
+                        print("Great success!!")
+                        print(result)
+                        self.keychain.set(result.token, forKey: KeychainKeys.token)
+                        
+                        // TODO redirect to the home screen
+                    }
+                case.failure(let err):
+                    print(err)
+                
+                }
+            }
+        }
+    }
 }
+
+
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
