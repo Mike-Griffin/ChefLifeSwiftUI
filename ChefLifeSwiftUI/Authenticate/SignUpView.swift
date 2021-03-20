@@ -20,6 +20,7 @@ fileprivate struct CShape : Shape {
 }
 
 struct SignUpView: View {
+    @State var name = ""
     @State var email = ""
     @State var password = ""
     @State var reenterPassword = ""
@@ -27,6 +28,17 @@ struct SignUpView: View {
     var body: some View {
         VStack {
             VStack {
+                HStack(spacing: 15) {
+                    Image(systemName: "person")
+                        .resizable()
+                        .frame(width: 18, height: 18)
+                        .foregroundColor(.black)
+                    
+                    TextField("Name", text: self.$name)
+                }.padding(.vertical, 20)
+                
+                Divider()
+                
                 HStack(spacing: 15) {
                     Image(systemName: "envelope")
                         .foregroundColor(.black)
