@@ -14,11 +14,11 @@ struct ContentView: View {
 
     
     var body: some View {
-        if let token = keychain.get(KeychainKeys.token) {
+        if let _ = keychain.get(KeychainKeys.token) {
             // need to add another case that verifies that the token is valid
             
             // also this should go to home screen
-            Text("Home Screen coming soon")
+            HomeView()
         }
         else {
             AuthenticationView()

@@ -54,6 +54,7 @@ public struct RecipeApiService {
                         completion(.success(results))
                     } else {
                         print("error with decoding")
+                        // TODO create an error for the completion handler?
                     }
                 }
             }

@@ -7,16 +7,13 @@
 //
 
 import SwiftUI
-import KeychainSwift
 
-let apiService = RecipeApiService()
-
+fileprivate let userService = UserService()
 
 struct LoginView: View {
     @State var email = ""
     @State var password = ""
     @State var hidePassword = true
-    let keychain = KeychainSwift(keyPrefix: KeychainKeys.keyPrefix)
     
     var body: some View {
         VStack {
@@ -88,23 +85,17 @@ struct LoginView: View {
     
     // decide if I should move this into another file...MVVM?
     fileprivate func handleLogin() {
-        //print("do the login thing")
-        let body : [String : Any] = ["email": "\(email)", "password": "\(password)"]
-        if let jsonDataBody = try? JSONSerialization.data(withJSONObject: body) {
-            apiService.apiRequest(request: "user/token/", body: jsonDataBody, httpMethod: "POST", headerFields: ["Content-Type": "application/json; charset=utf-8"], useToken: false) { (results : Result<Token, Error>) in
-                switch(results) {
-                case .success(let result):
-                    DispatchQueue.main.async {
-                        print("Great success!!")
-                        print(result)
-                        self.keychain.set(result.token, forKey: KeychainKeys.token)
-                        
-                        // TODO redirect to the home screen
-                    }
-                case.failure(let err):
-                    print(err)
-                
+        userService.getToken(email: email, password: password) { (results : Result<Token, Error>) in
+            switch(results) {
+            case .success(_):
+                DispatchQueue.main.async {
+                    print("Success in the view for get token!!")
+                    
+                    // TODO redirect to the home screen
                 }
+            
+            case .failure(let error):
+                print(error.localizedDescription)
             }
         }
     }
