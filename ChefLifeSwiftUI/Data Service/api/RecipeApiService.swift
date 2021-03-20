@@ -7,9 +7,10 @@
 //
 
 import Foundation
+import Combine
 import KeychainSwift
 
-let apiEndpoint = "http://127.0.0.1:8000/api/"
+let baseEndpoint = "http://127.0.0.1:8000/api/"
 
 struct KeychainKeys {
     static let keyPrefix = "comedichoney_"
@@ -17,7 +18,50 @@ struct KeychainKeys {
 }
 
 public struct RecipeApiService {
-    func apiRequest<T: Codable>(request: String, body: Data?, httpMethod: String, headerFields: [String: String], useToken: Bool = true, completion: @escaping (Result<T, Error>) -> ()) {
+    
+    // TODO make all these values (enpoint, httpMethod, headerFields) an enum instead of a string
+    func combineRequest<T: Codable>(endpoint: String, body: Data?, httpMethod: String, headerFields: [String: String]?, useToken: Bool = true) -> AnyPublisher<T, Error> {
+        
+        let urlString = baseEndpoint + endpoint
+        
+        print(urlString)
+        print(httpMethod)
+        let url = URL(string: urlString)!
+        var request = URLRequest(url: url)
+        request.httpMethod = httpMethod
+        if useToken {
+            let keychain = KeychainSwift(keyPrefix: KeychainKeys.keyPrefix)
+            let token = keychain.get(KeychainKeys.token)!
+            print(token)
+            request.setValue("Token \(token)", forHTTPHeaderField: "Authorization")
+            print(request)
+        }
+        if let headerFields = headerFields {
+            for header in headerFields {
+                print(header.key)
+                print(header.value)
+                request.setValue(header.value, forHTTPHeaderField: header.key)
+            }
+        }
+        return URLSession.shared.dataTaskPublisher(for: request)
+            .tryMap { (data, response) in
+                guard let httpResponse = response as? HTTPURLResponse,
+                      httpResponse.statusCode == 200 else {
+                    print(response)
+                    throw URLError(.badServerResponse)
+                }
+                return data
+            }
+            .decode(type: T.self, decoder: JSONDecoder())
+            .map({ result in
+                print("success")
+                // Not sure that I need this map...unsure exactly what it's doing
+                return result
+            })
+            .eraseToAnyPublisher()
+    }
+    
+    func apiRequest<T: Codable>(request: String, body: Data?, httpMethod: String, headerFields: [String: String]?, useToken: Bool = true, completion: @escaping (Result<T, Error>) -> ()) {
 
         if useToken {
 //        guard let token = keychain.get(KeychainKeys.token) else {
@@ -25,17 +69,19 @@ public struct RecipeApiService {
 //        }
         }
         
-        let urlString = apiEndpoint + request
+        let urlString = baseEndpoint + request
         if let url = URL(string: urlString) {
             var request = URLRequest(url: url)
             if useToken {
                 //            request.setValue("Token \(token)", forHTTPHeaderField: "Authorization")
             }
             request.httpMethod = httpMethod
-            for header in headerFields {
-                print(header.key)
-                print(header.value)
-                request.setValue(header.value, forHTTPHeaderField: header.key)
+            if let headerFields = headerFields {
+                for header in headerFields {
+                    print(header.key)
+                    print(header.value)
+                    request.setValue(header.value, forHTTPHeaderField: header.key)
+                }
             }
             request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
             request.httpBody = body

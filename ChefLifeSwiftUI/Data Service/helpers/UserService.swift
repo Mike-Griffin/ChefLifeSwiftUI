@@ -9,7 +9,7 @@
 import Foundation
 import KeychainSwift
 
-let apiService = RecipeApiService()
+fileprivate let apiService = RecipeApiService()
 
 struct UserService {
     let keychain = KeychainSwift(keyPrefix: KeychainKeys.keyPrefix)
@@ -27,10 +27,24 @@ struct UserService {
                         completion(.success(result))
                         // TODO redirect to the home screen
                     }
-                case.failure(let err):
+                case .failure(let err):
                     print(err)
                     completion(.failure(err))
                 }
+            }
+        }
+    }
+    
+    func getMe(completion: @escaping(Result<User, Error>) -> ()) {
+        apiService.apiRequest(request: "user/me/", body: nil, httpMethod: "GET", headerFields: nil) {
+            (results: Result<User, Error>) in
+            switch(results) {
+            case .success(let result):
+                completion(.success(result))
+            
+            case .failure(let err):
+                print(err)
+                completion(.failure(err))
             }
         }
     }
