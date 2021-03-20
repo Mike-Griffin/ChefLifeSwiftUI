@@ -11,6 +11,7 @@ import SwiftUI
 struct LoginView: View {
     @State var email = ""
     @State var password = ""
+    @State var hidePassword = true
     
     var body: some View {
         VStack {
@@ -30,13 +31,26 @@ struct LoginView: View {
                         .frame(width: 15, height: 18)
                         .foregroundColor(.black)
                     
-                    SecureField("Password", text: self.$password)
                     
-                    Button(action: {
+                    if self.hidePassword {
                         
-                    }) {
-                        Image(systemName: "eye")
-                            .foregroundColor(.black)
+                        SecureField("Password", text: self.$password)
+                        
+                        Button(action: {
+                            hidePassword = false
+                        }) {
+                            Image(systemName: "eye")
+                                .foregroundColor(.black)
+                        }
+                    }
+                    else {
+                        TextField("Password", text: self.$password)
+                        Button(action: {
+                            hidePassword = true
+                        }) {
+                            Image(systemName: "eye.slash")
+                                .foregroundColor(.black)
+                        }
                     }
                 }.padding(.vertical, 20)
             }
