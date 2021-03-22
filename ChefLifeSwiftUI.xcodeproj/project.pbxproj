@@ -10,10 +10,10 @@
 		11FDD3AA8327E98B140AC235 /* Pods_ChefLifeSwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 950DD36D39705C83FE1CF203 /* Pods_ChefLifeSwiftUI.framework */; };
 		7F31921E2602DB9200A984EA /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F31921D2602DB9200A984EA /* LoginView.swift */; };
 		7F3192222602E2B100A984EA /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3192212602E2B000A984EA /* SignUpView.swift */; };
-		7F68035B26062356008236C9 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F68035A26062356008236C9 /* UserService.swift */; };
 		7F680361260629C2008236C9 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F680360260629C2008236C9 /* HomeView.swift */; };
 		7F680369260683EE008236C9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F680368260683EE008236C9 /* User.swift */; };
 		7F68038A260694A3008236C9 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F680389260694A3008236C9 /* ContentViewModel.swift */; };
+		7F6803952607ACE8008236C9 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6803942607ACE8008236C9 /* LoginViewModel.swift */; };
 		7F9C3A3C2601949800015724 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9C3A3B2601949800015724 /* AppDelegate.swift */; };
 		7F9C3A3E2601949800015724 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9C3A3D2601949800015724 /* SceneDelegate.swift */; };
 		7F9C3A402601949800015724 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9C3A3F2601949800015724 /* ContentView.swift */; };
@@ -22,6 +22,7 @@
 		7F9C3A482601949A00015724 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F9C3A462601949A00015724 /* LaunchScreen.storyboard */; };
 		7FA647642605AEB900C8C127 /* RecipeApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA647632605AEB900C8C127 /* RecipeApiService.swift */; };
 		7FA647692605B4B300C8C127 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA647682605B4B300C8C127 /* Token.swift */; };
+		7FA8E22426084C24000EC29C /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA8E22326084C24000EC29C /* KeychainService.swift */; };
 		7FE704152604586B00031979 /* AuthenticationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE704142604586B00031979 /* AuthenticationView.swift */; };
 /* End PBXBuildFile section */
 
@@ -29,10 +30,10 @@
 		34FE395423355440B0BB6F6A /* Pods-ChefLifeSwiftUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChefLifeSwiftUI.release.xcconfig"; path = "Target Support Files/Pods-ChefLifeSwiftUI/Pods-ChefLifeSwiftUI.release.xcconfig"; sourceTree = "<group>"; };
 		7F31921D2602DB9200A984EA /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		7F3192212602E2B000A984EA /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
-		7F68035A26062356008236C9 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		7F680360260629C2008236C9 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		7F680368260683EE008236C9 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		7F680389260694A3008236C9 /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
+		7F6803942607ACE8008236C9 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		7F9C3A382601949800015724 /* ChefLifeSwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChefLifeSwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F9C3A3B2601949800015724 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7F9C3A3D2601949800015724 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -43,6 +44,7 @@
 		7F9C3A492601949A00015724 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7FA647632605AEB900C8C127 /* RecipeApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeApiService.swift; sourceTree = "<group>"; };
 		7FA647682605B4B300C8C127 /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
+		7FA8E22326084C24000EC29C /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
 		7FE704142604586B00031979 /* AuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationView.swift; sourceTree = "<group>"; };
 		950DD36D39705C83FE1CF203 /* Pods_ChefLifeSwiftUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChefLifeSwiftUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B90E2869F36BB5BD3539FF7F /* Pods-ChefLifeSwiftUI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChefLifeSwiftUI.debug.xcconfig"; path = "Target Support Files/Pods-ChefLifeSwiftUI/Pods-ChefLifeSwiftUI.debug.xcconfig"; sourceTree = "<group>"; };
@@ -87,14 +89,6 @@
 			path = Authenticate;
 			sourceTree = "<group>";
 		};
-		7F6803592606233C008236C9 /* helpers */ = {
-			isa = PBXGroup;
-			children = (
-				7F68035A26062356008236C9 /* UserService.swift */,
-			);
-			path = helpers;
-			sourceTree = "<group>";
-		};
 		7F68035F260629AF008236C9 /* Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -107,6 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				7F680389260694A3008236C9 /* ContentViewModel.swift */,
+				7F6803942607ACE8008236C9 /* LoginViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -166,9 +161,9 @@
 		7FA647612605AE7700C8C127 /* Data Service */ = {
 			isa = PBXGroup;
 			children = (
+				7FA8E22226084C0E000EC29C /* helpers */,
 				7FA647672605B46B00C8C127 /* models */,
 				7FA647622605AE9400C8C127 /* api */,
-				7F6803592606233C008236C9 /* helpers */,
 			);
 			path = "Data Service";
 			sourceTree = "<group>";
@@ -188,6 +183,14 @@
 				7F680368260683EE008236C9 /* User.swift */,
 			);
 			path = models;
+			sourceTree = "<group>";
+		};
+		7FA8E22226084C0E000EC29C /* helpers */ = {
+			isa = PBXGroup;
+			children = (
+				7FA8E22326084C24000EC29C /* KeychainService.swift */,
+			);
+			path = helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -305,7 +308,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7F68035B26062356008236C9 /* UserService.swift in Sources */,
 				7FA647642605AEB900C8C127 /* RecipeApiService.swift in Sources */,
 				7F9C3A3C2601949800015724 /* AppDelegate.swift in Sources */,
 				7F680361260629C2008236C9 /* HomeView.swift in Sources */,
@@ -313,6 +315,8 @@
 				7FE704152604586B00031979 /* AuthenticationView.swift in Sources */,
 				7F9C3A3E2601949800015724 /* SceneDelegate.swift in Sources */,
 				7F31921E2602DB9200A984EA /* LoginView.swift in Sources */,
+				7FA8E22426084C24000EC29C /* KeychainService.swift in Sources */,
+				7F6803952607ACE8008236C9 /* LoginViewModel.swift in Sources */,
 				7F68038A260694A3008236C9 /* ContentViewModel.swift in Sources */,
 				7F9C3A402601949800015724 /* ContentView.swift in Sources */,
 				7F680369260683EE008236C9 /* User.swift in Sources */,

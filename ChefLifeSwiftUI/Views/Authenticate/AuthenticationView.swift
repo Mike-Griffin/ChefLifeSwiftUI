@@ -10,6 +10,8 @@ import SwiftUI
 
 struct AuthenticationView: View {
     var body: some View {
+        // TODO I think I can remove this ZStack with the color because it needs to be within the Navigation View
+        // want to verify that I need to go the NavigationView route
         ZStack {
             Color("main-dark")
                 .edgesIgnoringSafeArea(.all)
@@ -30,59 +32,68 @@ struct AuthenticationFormView : View {
     @State var index = 0
     
     var body : some View {
-        VStack {
-            Image("chef")
-                .resizable()
-                .frame(width: 200, height: 180)
-            HStack {
-                Button(action: {
-                    withAnimation(.spring(response: 0.8, dampingFraction: 0.5, blendDuration: 0.5)) {
-                        self.index = 0
+        NavigationView {
+            ZStack {
+                Color("main-dark")
+                    .edgesIgnoringSafeArea(.all)
+                VStack {
+                    Image("chef")
+                        .resizable()
+                        .frame(width: 200, height: 180)
+                    HStack {
+                        Button(action: {
+                            withAnimation(.spring(response: 0.8, dampingFraction: 0.5, blendDuration: 0.5)) {
+                                self.index = 0
+                            }
+                        }) {
+                            Text("Login")
+                                .foregroundColor(self.index == 0 ? .black : .white)
+                                .fontWeight(.bold)
+                                .padding(.vertical, 10)
+                                .frame(width: (UIScreen.main.bounds.width - 50) / 2)
+                        }.background(self.index == 0 ? Color.white : Color.clear)
+                        .clipShape(Capsule())
+                        
+                        Button(action: {
+                            withAnimation(.spring(response: 0.8, dampingFraction: 0.5, blendDuration: 0.5)) {
+                                self.index = 1
+                            }
+                        }) {
+                            Text("Sign Up")
+                                .foregroundColor(self.index == 1 ? .black : .white)
+                                .fontWeight(.bold)
+                                .padding(.vertical, 10)
+                                .frame(width: (UIScreen.main.bounds.width - 50) / 2)
+                        }
+                        .background(self.index == 1 ? Color.white : Color.clear)
+                        .clipShape(Capsule())
                     }
-                }) {
-                    Text("Login")
-                        .foregroundColor(self.index == 0 ? .black : .white)
-                        .fontWeight(.bold)
-                        .padding(.vertical, 10)
-                        .frame(width: (UIScreen.main.bounds.width - 50) / 2)
-                }.background(self.index == 0 ? Color.white : Color.clear)
-                .clipShape(Capsule())
-                
-                Button(action: {
-                    withAnimation(.spring(response: 0.8, dampingFraction: 0.5, blendDuration: 0.5)) {
-                        self.index = 1
-                    }
-                }) {
-                    Text("Sign Up")
-                        .foregroundColor(self.index == 1 ? .black : .white)
-                        .fontWeight(.bold)
-                        .padding(.vertical, 10)
-                        .frame(width: (UIScreen.main.bounds.width - 50) / 2)
-                }
-                .background(self.index == 1 ? Color.white : Color.clear)
-                .clipShape(Capsule())
-            }
-            .background(Color.black.opacity(0.1))
-            .clipShape(Capsule())
-            .padding(.top, 25)
-            
-            if self.index == 0 {
-                LoginView()
-            }
-            else {
-                SignUpView()
-            }
-            
-            if self.index == 0 {
-                Button(action: {
+                    .background(Color.black.opacity(0.1))
+                    .clipShape(Capsule())
+                    .padding(.top, 25)
                     
-                }) {
-                    Text("Forget Password?")
-                        .foregroundColor(.white)
+                    if self.index == 0 {
+                        LoginView()
+                    }
+                    else {
+                        SignUpView()
+                    }
+                    
+                    if self.index == 0 {
+                        Button(action: {
+                            
+                        }) {
+                            Text("Forget Password?")
+                                .foregroundColor(.white)
+                        }
+                        .padding(.top, 20)
+                    }
                 }
-                .padding(.top, 20)
             }
         }
+        .navigationBarTitle("")
+        .navigationBarHidden(true)
+        .navigationBarBackButtonHidden(true)
     }
 }
 

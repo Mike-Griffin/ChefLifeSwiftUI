@@ -8,7 +8,6 @@
 
 import Foundation
 import Combine
-import KeychainSwift
 
 // it seems like it's common to make this a global singleton. Look into best practice around that
 // TODO for now I'm making it private
@@ -18,20 +17,14 @@ final class ContentViewModel : ObservableObject {
     @Published var token : String?
     @Published var user : User?
     
-//    private var apiPublisher: AnyPublisher<User, Error>?
-//
-//    private var apiCancellable: AnyCancellable? {
-//        willSet {
-//            apiCancellable?.cancel()
-//        }
-//    }
-    
     private var cancellable: AnyCancellable?
     
     init() {
-        let keychain = KeychainSwift(keyPrefix: KeychainKeys.keyPrefix)
-        token = keychain.get(KeychainKeys.token)
-        setupPublisher()
+        let keychainService = KeychainService()
+        token = keychainService.getToken()
+        if token != nil {
+            setupPublisher()
+        }
     }
     
     fileprivate func setupPublisher() {

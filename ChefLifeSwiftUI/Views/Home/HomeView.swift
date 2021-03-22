@@ -8,14 +8,17 @@
 
 import SwiftUI
 
-fileprivate let userService = UserService()
+//fileprivate let userService = UserService()
 
 struct HomeView: View {
+    // TODO move this to an appropriate view model
+    let keychainService = KeychainService()
+    
     var body: some View {
         VStack {
             Text("Home")
             Button(action: {
-                userService.logOut()
+                keychainService.logout()
             }, label: {
                 Text("Log Out")
             })
