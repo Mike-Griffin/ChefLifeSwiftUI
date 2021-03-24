@@ -20,10 +20,7 @@ fileprivate struct CShape : Shape {
 }
 
 struct SignUpView: View {
-    @State var name = ""
-    @State var email = ""
-    @State var password = ""
-    @State var reenterPassword = ""
+    @StateObject private var viewModel = SignUpViewModel()
     
     var body: some View {
         VStack {
@@ -34,7 +31,7 @@ struct SignUpView: View {
                         .frame(width: 18, height: 18)
                         .foregroundColor(.black)
                     
-                    TextField("Name", text: self.$name)
+                    TextField("Name", text: self.$viewModel.name)
                 }.padding(.vertical, 20)
                 
                 Divider()
@@ -43,7 +40,7 @@ struct SignUpView: View {
                     Image(systemName: "envelope")
                         .foregroundColor(.black)
                     
-                    TextField("Email Address", text: self.$email)
+                    TextField("Email Address", text: self.$viewModel.email)
                 }.padding(.vertical, 20)
                 
                 Divider()
@@ -54,7 +51,7 @@ struct SignUpView: View {
                         .frame(width: 15, height: 18)
                         .foregroundColor(.black)
                     
-                    SecureField("Password", text: self.$password)
+                    SecureField("Password", text: self.$viewModel.password)
                     
                     Button(action: {
                         
@@ -72,7 +69,7 @@ struct SignUpView: View {
                         .frame(width: 15, height: 18)
                         .foregroundColor(.black)
                     
-                    SecureField("Password", text: self.$reenterPassword)
+                    SecureField("Password", text: self.$viewModel.reenterPassword)
                     
                     Button(action: {
                         
@@ -88,6 +85,10 @@ struct SignUpView: View {
             .background(Color.white)
             .cornerRadius(10)
             .padding(.top, 25)
+            
+            Text(viewModel.inlinePasswordError)
+                .foregroundColor(.red)
+                .offset(y: -60)
             
             Button(action: {
                 

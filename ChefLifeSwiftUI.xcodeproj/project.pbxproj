@@ -23,6 +23,7 @@
 		7FA647642605AEB900C8C127 /* RecipeApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA647632605AEB900C8C127 /* RecipeApiService.swift */; };
 		7FA647692605B4B300C8C127 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA647682605B4B300C8C127 /* Token.swift */; };
 		7FA8E22426084C24000EC29C /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA8E22326084C24000EC29C /* KeychainService.swift */; };
+		7FA8E244260ADA2D000EC29C /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA8E243260ADA2D000EC29C /* SignUpViewModel.swift */; };
 		7FE704152604586B00031979 /* AuthenticationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE704142604586B00031979 /* AuthenticationView.swift */; };
 /* End PBXBuildFile section */
 
@@ -45,6 +46,7 @@
 		7FA647632605AEB900C8C127 /* RecipeApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeApiService.swift; sourceTree = "<group>"; };
 		7FA647682605B4B300C8C127 /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		7FA8E22326084C24000EC29C /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
+		7FA8E243260ADA2D000EC29C /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		7FE704142604586B00031979 /* AuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationView.swift; sourceTree = "<group>"; };
 		950DD36D39705C83FE1CF203 /* Pods_ChefLifeSwiftUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChefLifeSwiftUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B90E2869F36BB5BD3539FF7F /* Pods-ChefLifeSwiftUI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChefLifeSwiftUI.debug.xcconfig"; path = "Target Support Files/Pods-ChefLifeSwiftUI/Pods-ChefLifeSwiftUI.debug.xcconfig"; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 			children = (
 				7F680389260694A3008236C9 /* ContentViewModel.swift */,
 				7F6803942607ACE8008236C9 /* LoginViewModel.swift */,
+				7FA8E243260ADA2D000EC29C /* SignUpViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -314,6 +317,7 @@
 				7F3192222602E2B100A984EA /* SignUpView.swift in Sources */,
 				7FE704152604586B00031979 /* AuthenticationView.swift in Sources */,
 				7F9C3A3E2601949800015724 /* SceneDelegate.swift in Sources */,
+				7FA8E244260ADA2D000EC29C /* SignUpViewModel.swift in Sources */,
 				7F31921E2602DB9200A984EA /* LoginView.swift in Sources */,
 				7FA8E22426084C24000EC29C /* KeychainService.swift in Sources */,
 				7F6803952607ACE8008236C9 /* LoginViewModel.swift in Sources */,

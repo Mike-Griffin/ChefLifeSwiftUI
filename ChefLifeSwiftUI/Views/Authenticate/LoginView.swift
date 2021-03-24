@@ -64,6 +64,12 @@ struct LoginView: View {
             .cornerRadius(10)
             .padding(.top, 25)
             
+            if let errorText = viewModel.errorText {
+                Text(errorText)
+                    .foregroundColor(Color.red)
+                    .offset(y: -60)
+            }
+            
             
             NavigationLink(destination: HomeView(), tag: 1, selection: $viewModel.loginState) {
                 VStack {

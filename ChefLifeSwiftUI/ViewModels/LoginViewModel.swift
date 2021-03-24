@@ -22,6 +22,13 @@ final class LoginViewModel : ObservableObject {
             }
         }
     }
+    @Published var errorText : String? {
+        didSet {
+            if let _ = errorText {
+                loginState = 2
+            }
+        }
+    }
     @Published var loginState : Int? = 0
     @Published var email : String = ""
     @Published var password : String = ""
@@ -31,6 +38,9 @@ final class LoginViewModel : ObservableObject {
     func login() {
         print("Email: \(email)")
         print("Password: \(password)")
+        if let loginState = loginState {
+            print("Login state: \(loginState)")
+        }
         guard email.count != 0, password.count != 0 else {
             return
         }
@@ -38,11 +48,25 @@ final class LoginViewModel : ObservableObject {
         if let jsonDataBody = try? JSONSerialization.data(withJSONObject: body) {
 
             cancellable = apiService.combineRequest(endpoint: "user/token/", body: jsonDataBody, httpMethod: "POST", headerFields: ["Content-Type": "application/json; charset=utf-8"], useToken: false)
-                .sink(receiveCompletion: { (error) in
-                    print(error)
-                    }, receiveValue: { (result) in
-                        self.token = result
-                    })
+                .sink(receiveCompletion: { completion in
+                    switch completion {
+                    // TODO make this failure case actually use the error 
+                    case .failure(let error): self.errorText = "Error logging in please try again"
+                    case .finished: print("publisher is finished")
+                    }
+                }, receiveValue: { (result) in
+                    self.token = result
+                })
+//                .sink(receiveCompletion: { (error) in
+//
+//                    if error != nil {
+//                        print("Error")
+//                        print(error)
+//                        self.errorText = "Error logging in please try again"
+//                    }
+//                }, receiveValue: { (result) in
+//                    self.token = result
+//                })
         }
     }
 }
