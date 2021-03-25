@@ -90,9 +90,8 @@ struct SignUpView: View {
                 .foregroundColor(.red)
                 .offset(y: -60)
             
-            Button(action: {
-                
-            }) {
+            NavigationLink(
+                destination: HomeView()) {
                 Text("SIGNUP")
                     .foregroundColor(.white)
                     .fontWeight(.bold)
@@ -105,6 +104,25 @@ struct SignUpView: View {
             .offset(y: -40)
             .padding(.bottom, -40)
             .shadow(radius: 15)
+            .simultaneousGesture(TapGesture().onEnded{
+                viewModel.signUp()
+            })
+            
+//            Button(action: {
+//                
+//            }) {
+//                Text("SIGNUP")
+//                    .foregroundColor(.white)
+//                    .fontWeight(.bold)
+//                    .padding(.vertical)
+//                    .frame(width: UIScreen.main.bounds.width - 100)
+//            }.background(
+//                Color("main-light")
+//            )
+//            .cornerRadius(8)
+//            .offset(y: -40)
+//            .padding(.bottom, -40)
+//            .shadow(radius: 15)
         }
     }
 }

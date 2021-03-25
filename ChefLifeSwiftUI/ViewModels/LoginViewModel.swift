@@ -47,7 +47,7 @@ final class LoginViewModel : ObservableObject {
         let body : [String : Any] = ["email": "\(email)", "password": "\(password)"]
         if let jsonDataBody = try? JSONSerialization.data(withJSONObject: body) {
 
-            cancellable = apiService.combineRequest(endpoint: "user/token/", body: jsonDataBody, httpMethod: "POST", headerFields: ["Content-Type": "application/json; charset=utf-8"], useToken: false)
+            cancellable = apiService.combineRequest(endpoint: RecipeEndpoint.token.rawValue, body: jsonDataBody, httpMethod: HttpMethod.post.rawValue, headerFields: [HeaderKeys.ContentType.rawValue: HeaderValues.JSONUTF8.rawValue], useToken: false)
                 .sink(receiveCompletion: { completion in
                     switch completion {
                     // TODO make this failure case actually use the error 

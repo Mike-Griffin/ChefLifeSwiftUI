@@ -28,7 +28,7 @@ final class ContentViewModel : ObservableObject {
     }
     
     fileprivate func setupPublisher() {
-        cancellable = apiService.combineRequest(endpoint: "user/me/", body: nil, httpMethod: "GET", headerFields: nil)
+        cancellable = apiService.combineRequest(endpoint: RecipeEndpoint.me.rawValue, body: nil, httpMethod: HttpMethod.get.rawValue, headerFields: nil)
             .sink(receiveCompletion: { _ in }) { user in
                 self.user = user
             }

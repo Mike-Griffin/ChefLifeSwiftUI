@@ -120,4 +120,8 @@ class SignUpViewModel : ObservableObject {
             .assign(to: \.inlinePasswordError, on: self)
             .store(in: &cancellables)
     }
+    
+    func signUp() {
+        print("sign up code will go here")
+    }
 }

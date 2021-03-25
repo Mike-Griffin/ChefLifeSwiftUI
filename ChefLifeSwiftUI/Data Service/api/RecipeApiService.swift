@@ -11,6 +11,8 @@ import Combine
 
 let baseEndpoint = "http://127.0.0.1:8000/api/"
 
+
+
 public struct RecipeApiService {
     
     // TODO make all these values (enpoint, httpMethod, headerFields) an enum instead of a string
@@ -30,7 +32,7 @@ public struct RecipeApiService {
             let keychainService = KeychainService()
             let token = keychainService.getToken()!
             print(token)
-            request.setValue("Token \(token)", forHTTPHeaderField: "Authorization")
+            request.setValue("Token \(token)", forHTTPHeaderField: HeaderKeys.Authorization.rawValue)
             print(request)
         }
         if let headerFields = headerFields {
