@@ -57,16 +57,6 @@ final class LoginViewModel : ObservableObject {
                 }, receiveValue: { (result) in
                     self.token = result
                 })
-//                .sink(receiveCompletion: { (error) in
-//
-//                    if error != nil {
-//                        print("Error")
-//                        print(error)
-//                        self.errorText = "Error logging in please try again"
-//                    }
-//                }, receiveValue: { (result) in
-//                    self.token = result
-//                })
         }
     }
 }

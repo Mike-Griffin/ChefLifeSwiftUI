@@ -32,6 +32,8 @@ struct SignUpView: View {
                         .foregroundColor(.black)
                     
                     TextField("Name", text: self.$viewModel.name)
+                        .disableAutocorrection(true)
+                    
                 }.padding(.vertical, 20)
                 
                 Divider()
@@ -41,6 +43,8 @@ struct SignUpView: View {
                         .foregroundColor(.black)
                     
                     TextField("Email Address", text: self.$viewModel.email)
+                        .autocapitalization(.none)
+                        .disableAutocorrection(true)
                 }.padding(.vertical, 20)
                 
                 Divider()

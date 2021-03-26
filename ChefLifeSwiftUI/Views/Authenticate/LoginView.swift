@@ -23,6 +23,7 @@ struct LoginView: View {
                     
                     TextField("Email Address", text: self.$viewModel.email)
                         .autocapitalization(.none)
+                        .disableAutocorrection(/*@START_MENU_TOKEN@*/false/*@END_MENU_TOKEN@*/)
                 }.padding(.vertical, 20)
                 
                 Divider()
@@ -48,6 +49,7 @@ struct LoginView: View {
                     else {
                         TextField("Password", text: self.$viewModel.password)
                             .autocapitalization(.none)
+                            .disableAutocorrection(true)
                         Button(action: {
                             hidePassword = true
                         }) {

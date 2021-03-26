@@ -16,7 +16,7 @@ struct HomeView: View {
     
     var body: some View {
         VStack {
-            Text("Home")
+            Text("Welcome Home \(keychainService.getName() ?? "")")
             Button(action: {
                 keychainService.logout()
             }, label: {

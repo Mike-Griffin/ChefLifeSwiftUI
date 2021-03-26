@@ -11,6 +11,7 @@ import Foundation
 enum RecipeEndpoint : String {
     case me = "user/me/"
     case token = "user/token/"
+    case signup = "user/create/"
 }
 
 enum HttpMethod : String {

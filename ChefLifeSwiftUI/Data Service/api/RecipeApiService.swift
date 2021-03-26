@@ -45,8 +45,8 @@ public struct RecipeApiService {
         return URLSession.shared.dataTaskPublisher(for: request)
             .tryMap { (data, response) in
                 guard let httpResponse = response as? HTTPURLResponse,
-                      httpResponse.statusCode == 200 else {
-                    print(response)
+                      httpResponse.statusCode == 200 || httpResponse.statusCode == 201 else {
+                    //print(response)
                     throw URLError(.badServerResponse)
                 }
                 return data

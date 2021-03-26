@@ -16,7 +16,11 @@ enum PasswordStatus {
     case valid
 }
 
+fileprivate let apiService = RecipeApiService()
+
 class SignUpViewModel : ObservableObject {
+    let keychainService = KeychainService()
+
     @Published var name = ""
     @Published var email = ""
     @Published var password = ""
@@ -26,6 +30,13 @@ class SignUpViewModel : ObservableObject {
     
     @Published var formValid = false
     
+    var createdUser : User? {
+        didSet {
+            if let user = createdUser {
+                print("user created \(user.name)")
+            }
+        }
+    }
     private var cancellables = Set<AnyCancellable>()
     
     private var isNameEmptyPublisher : AnyPublisher<Bool, Never> {
@@ -122,6 +133,47 @@ class SignUpViewModel : ObservableObject {
     }
     
     func signUp() {
-        print("sign up code will go here")
+        guard formValid else { return }
+        
+        let body : [String : Any] = ["name": "\(name)", "email": "\(email)", "password": "\(password)"]
+        if let jsonDataBody = try? JSONSerialization.data(withJSONObject: body) {
+        apiService.combineRequest(endpoint: RecipeEndpoint.signup.rawValue, body: jsonDataBody, httpMethod: HttpMethod.post.rawValue, headerFields: [HeaderKeys.ContentType.rawValue: HeaderValues.JSONUTF8.rawValue], useToken: false)
+                .sink(receiveCompletion: { completion in
+                    switch completion {
+                    // TODO make this failure case actually use the error
+//                    case .failure(let error): self.inlinePasswordError = "Error signing up please try again"
+                    case .failure(let error): print(error)
+                    case .finished: print("publisher is finished")
+                    }
+                }, receiveValue: { (result) in
+                    self.handleUser(result)
+                }).store(in: &cancellables)
+            
+        }
+    }
+    
+    func handleUser(_ user: User) {
+        let body : [String : Any] = ["email": "\(user.email)", "password": "\(password)"]
+        if let jsonDataBody = try? JSONSerialization.data(withJSONObject: body) {
+
+            apiService.combineRequest(endpoint: RecipeEndpoint.token.rawValue, body: jsonDataBody, httpMethod: HttpMethod.post.rawValue, headerFields: [HeaderKeys.ContentType.rawValue: HeaderValues.JSONUTF8.rawValue], useToken: false)
+                .sink(receiveCompletion: { completion in
+                    switch completion {
+                    // TODO make this failure case actually use the error
+                    case .failure(let error): print(error)
+                    case .finished: print("publisher is finished")
+                    }
+                }, receiveValue: { (result) in
+                    self.storeToken(result)
+                }).store(in: &cancellables)
+        }
+    }
+    
+    func storeToken(_ token: Token) {
+        keychainService.setToken(token: token.token)
+    }
+    
+    func storeUserData(_ user: User) {
+        
     }
 }
