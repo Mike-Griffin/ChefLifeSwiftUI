@@ -30,13 +30,8 @@ class SignUpViewModel : ObservableObject {
     
     @Published var formValid = false
     
-    var createdUser : User? {
-        didSet {
-            if let user = createdUser {
-                print("user created \(user.name)")
-            }
-        }
-    }
+    var createdUser : User?
+    
     private var cancellables = Set<AnyCancellable>()
     
     private var isNameEmptyPublisher : AnyPublisher<Bool, Never> {

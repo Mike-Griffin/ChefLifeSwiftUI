@@ -29,6 +29,31 @@ final class LoginViewModel : ObservableObject {
             }
         }
     }
+    
+    private var user : User? {
+        didSet {
+            if let user = user {
+                if let savedName = keychainService.getName() {
+                    if savedName != user.name {
+                        keychainService.setName(name: user.name)
+                    }
+                }
+                else {
+                    keychainService.setName(name: user.name)
+                }
+                
+                if let savedEmail = keychainService.getEmail() {
+                    if savedEmail != user.email {
+                        keychainService.setEmail(email: user.email)
+                    }
+                }
+                else {
+                    keychainService.setName(name: user.name)
+                }
+            }
+        }
+    }
+    
     @Published var loginState : Int? = 0
     @Published var email : String = ""
     @Published var password : String = ""
@@ -36,11 +61,6 @@ final class LoginViewModel : ObservableObject {
     private var cancellable: AnyCancellable?
     
     func login() {
-        print("Email: \(email)")
-        print("Password: \(password)")
-        if let loginState = loginState {
-            print("Login state: \(loginState)")
-        }
         guard email.count != 0, password.count != 0 else {
             return
         }
@@ -58,5 +78,12 @@ final class LoginViewModel : ObservableObject {
                     self.token = result
                 })
         }
+    }
+    
+    func loadUser() {
+        cancellable = apiService.combineRequest(endpoint: RecipeEndpoint.me.rawValue, body: nil, httpMethod: HttpMethod.get.rawValue, headerFields: nil)
+            .sink(receiveCompletion: { _ in }) { user in
+                self.user = user
+            }
     }
 }

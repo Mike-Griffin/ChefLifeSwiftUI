@@ -8,20 +8,45 @@
 
 import SwiftUI
 
-//fileprivate let userService = UserService()
-
 struct HomeView: View {
-    // TODO move this to an appropriate view model
     let keychainService = KeychainService()
     
     var body: some View {
         VStack {
             Text("Welcome Home \(keychainService.getName() ?? "")")
-            Button(action: {
-                keychainService.logout()
-            }, label: {
-                Text("Log Out")
-            })
+            Spacer()
+            VStack {
+                NavigationLink(
+                    destination: CreateRecipeView(),
+                    label: {
+                        HStack {
+                            Text("Create a New Recipe")
+                            .fontWeight(.bold)
+                            .foregroundColor(.white)
+                        }
+                        .padding()
+
+                    })
+            }
+            .background(Color("main-light"))
+            .cornerRadius(25)
+            .shadow(radius: 5)
+        }
+        //.navigationTitle("Home")
+        .navigationBarBackButtonHidden(true)
+        .toolbar {
+            ToolbarItemGroup(placement: .navigationBarLeading ) {
+                NavigationLink(
+                    destination: SearchView()) {
+                    Image(systemName: "magnifyingglass")
+                }
+            }
+            ToolbarItemGroup(placement: .navigationBarTrailing) {
+                NavigationLink(
+                    destination: MenuView()) {
+                    Image(systemName: "line.horizontal.3")
+                }
+            }
         }
     }
 }

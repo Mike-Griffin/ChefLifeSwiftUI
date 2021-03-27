@@ -90,6 +90,9 @@ struct LoginView: View {
                 .simultaneousGesture(TapGesture().onEnded{
                     viewModel.login()
                 })
+                .simultaneousGesture(LongPressGesture().onEnded{_ in
+                    viewModel.login()
+                })
             }
 
             

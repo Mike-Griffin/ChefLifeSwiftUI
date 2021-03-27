@@ -111,6 +111,9 @@ struct SignUpView: View {
             .simultaneousGesture(TapGesture().onEnded{
                 viewModel.signUp()
             })
+            .simultaneousGesture(LongPressGesture().onEnded{_ in 
+                viewModel.signUp()
+            })
             
 //            Button(action: {
 //                
