@@ -11,7 +11,6 @@ import SwiftUI
 struct CreateRecipeView: View {
     @State var email = ""
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    
     var body: some View {
         VStack {
             HStack {
@@ -23,7 +22,6 @@ struct CreateRecipeView: View {
                 print("printing")
                 self.presentationMode.wrappedValue.dismiss()
             }
-            
         }
         .padding()
         .navigationTitle("Create Recipe")

@@ -15,11 +15,9 @@ struct AuthenticationView: View {
         ZStack {
             Color("main-dark")
                 .edgesIgnoringSafeArea(.all)
-            
             if UIScreen.main.bounds.height > 800 {
                 AuthenticationFormView()
-            }
-            else {
+            } else {
                 ScrollView(.vertical, showsIndicators: false) {
                     AuthenticationFormView()
                 }
@@ -28,9 +26,8 @@ struct AuthenticationView: View {
     }
 }
 
-struct AuthenticationFormView : View {
+struct AuthenticationFormView: View {
     @State var index = 0
-    
     var body : some View {
         NavigationView {
             ZStack {
@@ -45,47 +42,43 @@ struct AuthenticationFormView : View {
                             withAnimation(.spring(response: 0.8, dampingFraction: 0.5, blendDuration: 0.5)) {
                                 self.index = 0
                             }
-                        }) {
+                        }, label: {
                             Text("Login")
                                 .foregroundColor(self.index == 0 ? .black : .white)
                                 .fontWeight(.bold)
                                 .padding(.vertical, 10)
                                 .frame(width: (UIScreen.main.bounds.width - 50) / 2)
-                        }.background(self.index == 0 ? Color.white : Color.clear)
+                        }).background(self.index == 0 ? Color.white : Color.clear)
                         .clipShape(Capsule())
-                        
                         Button(action: {
                             withAnimation(.spring(response: 0.8, dampingFraction: 0.5, blendDuration: 0.5)) {
                                 self.index = 1
                             }
-                        }) {
+                        }, label: {
                             Text("Sign Up")
                                 .foregroundColor(self.index == 1 ? .black : .white)
                                 .fontWeight(.bold)
                                 .padding(.vertical, 10)
                                 .frame(width: (UIScreen.main.bounds.width - 50) / 2)
-                        }
+                        })
                         .background(self.index == 1 ? Color.white : Color.clear)
                         .clipShape(Capsule())
                     }
                     .background(Color.black.opacity(0.1))
                     .clipShape(Capsule())
                     .padding(.top, 25)
-                    
                     if self.index == 0 {
                         LoginView()
-                    }
-                    else {
+                    } else {
                         SignUpView()
                     }
-                    
                     if self.index == 0 {
                         Button(action: {
-                            
-                        }) {
+                          print("To do forgot password")
+                        }, label: {
                             Text("Forget Password?")
                                 .foregroundColor(.white)
-                        }
+                        })
                         .padding(.top, 20)
                     }
                 }

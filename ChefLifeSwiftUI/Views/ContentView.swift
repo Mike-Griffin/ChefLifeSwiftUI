@@ -14,20 +14,16 @@ struct ContentView: View {
 
     @StateObject var viewModel = ContentViewModel()
 
-    
     var body: some View {
-        
-        if let _ = viewModel.token {
-            if let _ = viewModel.user {
+        if viewModel.token != nil {
+            if viewModel.user != nil {
                 NavigationView {
                     HomeView()
                 }
-            }
-            else {
+            } else {
                 AuthenticationView()
-            }            
-        }
-        else {
+            }
+        } else {
             AuthenticationView()
         }
     }

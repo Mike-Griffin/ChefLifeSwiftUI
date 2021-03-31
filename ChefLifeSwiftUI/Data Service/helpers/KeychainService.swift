@@ -22,29 +22,21 @@ struct KeychainService {
     func logout() {
         keychain.delete(KeychainKeys.token)
     }
-    
     func getToken() -> String? {
         return keychain.get(KeychainKeys.token)
     }
-    
     func getEmail() -> String? {
         return keychain.get(KeychainKeys.email)
     }
-
-    
     func getName() -> String? {
         return keychain.get(KeychainKeys.name)
     }
-
-    
     func setToken(token: String) {
         keychain.set(token, forKey: KeychainKeys.token)
     }
-    
     func setEmail(email: String) {
         keychain.set(email, forKey: KeychainKeys.email)
     }
-    
     func setName(name: String) {
         keychain.set(name, forKey: KeychainKeys.name)
     }

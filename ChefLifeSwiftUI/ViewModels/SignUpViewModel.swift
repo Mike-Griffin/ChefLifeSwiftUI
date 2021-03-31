@@ -16,33 +16,35 @@ enum PasswordStatus {
     case valid
 }
 
-fileprivate let apiService = RecipeApiService()
+private let apiService = RecipeApiService()
+private let userService = UserApiService()
 
-class SignUpViewModel : ObservableObject {
+class SignUpViewModel: ObservableObject {
     let keychainService = KeychainService()
 
     @Published var name = ""
     @Published var email = ""
     @Published var password = ""
     @Published var reenterPassword = ""
-    
     @Published var inlinePasswordError = ""
-    
     @Published var formValid = false
-    
-    var createdUser : User?
-    
+    var createdUser: User?
     private var cancellables = Set<AnyCancellable>()
-    
-    private var isNameEmptyPublisher : AnyPublisher<Bool, Never> {
+    var token: Token? {
+        didSet {
+            if let token = token {
+                keychainService.setToken(token: token.token)
+            }
+        }
+    }
+    private var isNameEmptyPublisher: AnyPublisher<Bool, Never> {
         $name
             .debounce(for: 0.8, scheduler: RunLoop.main)
             .removeDuplicates()
             .map { $0.isEmpty }
             .eraseToAnyPublisher()
     }
-    
-    private var isEmailValidPublisher : AnyPublisher<Bool, Never> {
+    private var isEmailValidPublisher: AnyPublisher<Bool, Never> {
         // TODO enhance to make sure it's a valid email with @ and .
         $email
             .debounce(for: 0.8, scheduler: RunLoop.main)
@@ -50,23 +52,20 @@ class SignUpViewModel : ObservableObject {
             .map { $0.count >= 3 }
             .eraseToAnyPublisher()
     }
-    
-    private var isPasswordEmptyPublisher : AnyPublisher<Bool, Never> {
+    private var isPasswordEmptyPublisher: AnyPublisher<Bool, Never> {
         $password
             .debounce(for: 0.8, scheduler: RunLoop.main)
             .removeDuplicates()
             .map { $0.isEmpty }
             .eraseToAnyPublisher()
     }
-    
-    private var arePasswordsEqualPublisher : AnyPublisher<Bool, Never> {
+    private var arePasswordsEqualPublisher: AnyPublisher<Bool, Never> {
         Publishers.CombineLatest($password, $reenterPassword)
             .debounce(for: 0.2, scheduler: RunLoop.main)
-            .map{ $0 == $1 }
+            .map { $0 == $1 }
             .eraseToAnyPublisher()
     }
-    
-    private var isPasswordStrongPublisher : AnyPublisher<Bool, Never> {
+    private var isPasswordStrongPublisher: AnyPublisher<Bool, Never> {
         // TODO enhance this to make sure it also checks for special characters / capital letters
         $password
             .debounce(for: 0.2, scheduler: RunLoop.main)
@@ -76,8 +75,7 @@ class SignUpViewModel : ObservableObject {
             }
             .eraseToAnyPublisher()
     }
-    
-    private var isPasswordValidPublisher : AnyPublisher<PasswordStatus, Never> {
+    private var isPasswordValidPublisher: AnyPublisher<PasswordStatus, Never> {
         Publishers.CombineLatest3(isPasswordEmptyPublisher, isPasswordStrongPublisher, arePasswordsEqualPublisher)
             .map {
                 if $0 {
@@ -93,21 +91,18 @@ class SignUpViewModel : ObservableObject {
             }
             .eraseToAnyPublisher()
     }
-    
-    private var isFormValidPublisher : AnyPublisher<Bool, Never> {
+    private var isFormValidPublisher: AnyPublisher<Bool, Never> {
         Publishers.CombineLatest3(isPasswordValidPublisher, isEmailValidPublisher, isNameEmptyPublisher)
             .map {
                 $0 == .valid && $1 && !$2
             }
             .eraseToAnyPublisher()
     }
-    
     init() {
         isFormValidPublisher
             .receive(on: RunLoop.main)
             .assign(to: \.formValid, on: self)
             .store(in: &cancellables)
-        
         isPasswordValidPublisher
             .dropFirst()
             .receive(on: RunLoop.main)
@@ -126,49 +121,40 @@ class SignUpViewModel : ObservableObject {
             .assign(to: \.inlinePasswordError, on: self)
             .store(in: &cancellables)
     }
-    
     func signUp() {
         guard formValid else { return }
-        
-        let body : [String : Any] = ["name": "\(name)", "email": "\(email)", "password": "\(password)"]
+        let body: [String: Any] = ["name": "\(name)", "email": "\(email)", "password": "\(password)"]
         if let jsonDataBody = try? JSONSerialization.data(withJSONObject: body) {
-        apiService.combineRequest(endpoint: RecipeEndpoint.signup.rawValue, body: jsonDataBody, httpMethod: HttpMethod.post.rawValue, headerFields: [HeaderKeys.ContentType.rawValue: HeaderValues.JSONUTF8.rawValue], useToken: false)
+        apiService.combineRequest(endpoint: RecipeEndpoint.signup.rawValue, body: jsonDataBody,
+                                  httpMethod: HttpMethod.post.rawValue,
+                                  headerFields: [HeaderKeys.contentType.rawValue:
+                                                    HeaderValues.JSONUTF8.rawValue],
+                                  useToken: false)
                 .sink(receiveCompletion: { completion in
                     switch completion {
                     // TODO make this failure case actually use the error
-//                    case .failure(let error): self.inlinePasswordError = "Error signing up please try again"
                     case .failure(let error): print(error)
                     case .finished: print("publisher is finished")
                     }
                 }, receiveValue: { (result) in
                     self.handleUser(result)
                 }).store(in: &cancellables)
-            
         }
     }
-    
     func handleUser(_ user: User) {
-        let body : [String : Any] = ["email": "\(user.email)", "password": "\(password)"]
-        if let jsonDataBody = try? JSONSerialization.data(withJSONObject: body) {
 
-            apiService.combineRequest(endpoint: RecipeEndpoint.token.rawValue, body: jsonDataBody, httpMethod: HttpMethod.post.rawValue, headerFields: [HeaderKeys.ContentType.rawValue: HeaderValues.JSONUTF8.rawValue], useToken: false)
-                .sink(receiveCompletion: { completion in
-                    switch completion {
-                    // TODO make this failure case actually use the error
-                    case .failure(let error): print(error)
-                    case .finished: print("publisher is finished")
-                    }
-                }, receiveValue: { (result) in
-                    self.storeToken(result)
-                }).store(in: &cancellables)
-        }
+        userService.getToken(email: user.email, password: password)
+            .sink(receiveCompletion: { completion in
+                switch completion {
+                // TODO make this failure case actually use the error
+                case .failure(let error): print(error)
+                case .finished: print("publisher is finished")
+                }
+            }, receiveValue: { (result) in
+                self.token = result
+            }).store(in: &cancellables)
     }
-    
     func storeToken(_ token: Token) {
         keychainService.setToken(token: token.token)
-    }
-    
-    func storeUserData(_ user: User) {
-        
     }
 }

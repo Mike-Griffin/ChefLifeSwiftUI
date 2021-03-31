@@ -15,7 +15,6 @@ struct MenuView: View {
         ZStack {
             Color("main-dark")
                 .edgesIgnoringSafeArea(.all)
-            
             VStack(alignment: .leading) {
                 HStack {
                     NavigationLink(
@@ -25,10 +24,10 @@ struct MenuView: View {
                 }
                 Spacer()
             }
-            .simultaneousGesture(TapGesture().onEnded{
+            .simultaneousGesture(TapGesture().onEnded {
                 keychainService.logout()
             })
-            .simultaneousGesture(LongPressGesture().onEnded{_ in
+            .simultaneousGesture(LongPressGesture().onEnded { _ in
                 keychainService.logout()
             })
     }

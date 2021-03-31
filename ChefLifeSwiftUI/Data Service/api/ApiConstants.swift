@@ -8,22 +8,22 @@
 
 import Foundation
 
-enum RecipeEndpoint : String {
-    case me = "user/me/"
+enum RecipeEndpoint: String {
+    case getMe = "user/me/"
     case token = "user/token/"
     case signup = "user/create/"
 }
 
-enum HttpMethod : String {
+enum HttpMethod: String {
     case get = "GET"
     case post = "POST"
 }
 
-enum HeaderKeys : String {
-    case Authorization = "Authorization"
-    case ContentType = "Content-Type"
+enum HeaderKeys: String {
+    case authorization = "Authorization"
+    case contentType = "Content-Type"
 }
 
-enum HeaderValues : String {
+enum HeaderValues: String {
     case JSONUTF8 = "application/json; charset=utf-8"
 }

@@ -10,7 +10,6 @@ import SwiftUI
 
 struct HomeView: View {
     let keychainService = KeychainService()
-    
     var body: some View {
         VStack {
             Text("Welcome Home \(keychainService.getName() ?? "")")
@@ -32,7 +31,6 @@ struct HomeView: View {
             .cornerRadius(25)
             .shadow(radius: 5)
         }
-        //.navigationTitle("Home")
         .navigationBarBackButtonHidden(true)
         .toolbar {
             ToolbarItemGroup(placement: .navigationBarLeading ) {

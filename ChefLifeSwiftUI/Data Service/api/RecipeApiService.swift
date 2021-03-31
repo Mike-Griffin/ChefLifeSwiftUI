@@ -11,16 +11,12 @@ import Combine
 
 let baseEndpoint = "http://127.0.0.1:8000/api/"
 
-
-
 public struct RecipeApiService {
-    
     // TODO make all these values (enpoint, httpMethod, headerFields) an enum instead of a string
-    func combineRequest<T: Codable>(endpoint: String, body: Data?, httpMethod: String, headerFields: [String: String]?, useToken: Bool = true) -> AnyPublisher<T, Error> {
-        
+    func combineRequest<T: Codable>(endpoint: String, body: Data?, httpMethod: String,
+                                    headerFields: [String: String]?,
+                                    useToken: Bool = true) -> AnyPublisher<T, Error> {
         let urlString = baseEndpoint + endpoint
-        // TODO stop having so many print messages try to use the debugger more often
-
         let url = URL(string: urlString)!
         var request = URLRequest(url: url)
         request.httpMethod = httpMethod
@@ -30,7 +26,7 @@ public struct RecipeApiService {
         if useToken {
             let keychainService = KeychainService()
             let token = keychainService.getToken()!
-            request.setValue("Token \(token)", forHTTPHeaderField: HeaderKeys.Authorization.rawValue)
+            request.setValue("Token \(token)", forHTTPHeaderField: HeaderKeys.authorization.rawValue)
         }
         if let headerFields = headerFields {
             for header in headerFields {
