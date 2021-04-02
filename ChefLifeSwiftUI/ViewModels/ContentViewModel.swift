@@ -11,7 +11,7 @@ import Combine
 
 // it seems like it's common to make this a global singleton. Look into best practice around that
 // TODO for now I'm making it private
-private let userApiService = UserApiService()
+private let userApiService = UserDataService()
 private let keychainService = KeychainService()
 
 final class ContentViewModel: ObservableObject {

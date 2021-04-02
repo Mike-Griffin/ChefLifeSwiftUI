@@ -9,11 +9,11 @@
 import Foundation
 import KeychainSwift
 
-struct KeychainKeys {
-    static let keyPrefix = "comedichoney_"
-    static let token = "token"
-    static let email = "email"
-    static let name = "name"
+enum KeychainKeys {
+    public static let keyPrefix = "comedichoney_"
+    public static let token = "token"
+    public static let email = "email"
+    public static let name = "name"
 }
 
 struct KeychainService {
@@ -21,6 +21,8 @@ struct KeychainService {
 
     func logout() {
         keychain.delete(KeychainKeys.token)
+        keychain.delete(KeychainKeys.name)
+        keychain.delete(KeychainKeys.email)
     }
     func getToken() -> String? {
         return keychain.get(KeychainKeys.token)

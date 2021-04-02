@@ -16,8 +16,8 @@ enum PasswordStatus {
     case valid
 }
 
-private let apiService = RecipeApiService()
-private let userService = UserApiService()
+private let apiService = ApiService()
+private let userService = UserDataService()
 
 class SignUpViewModel: ObservableObject {
     let keychainService = KeychainService()
@@ -142,11 +142,15 @@ class SignUpViewModel: ObservableObject {
         }
     }
     func handleUser(_ user: User) {
-
-        userService.getToken(email: user.email, password: password)
+        let body: [String: Any] = ["email": "\(user.email)", "password": "\(password)"]
+        guard let jsonDataBody = try? JSONSerialization.data(withJSONObject: body) else {
+            // TODO add error handling
+            return
+        }
+        userService.getToken(body: jsonDataBody)
             .sink(receiveCompletion: { completion in
                 switch completion {
-                // TODO make this failure case actually use the error
+                // TODO make this failure case actually uses the error
                 case .failure(let error): print(error)
                 case .finished: print("publisher is finished")
                 }

@@ -10,6 +10,9 @@
 		11FDD3AA8327E98B140AC235 /* Pods_ChefLifeSwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 950DD36D39705C83FE1CF203 /* Pods_ChefLifeSwiftUI.framework */; };
 		7F31921E2602DB9200A984EA /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F31921D2602DB9200A984EA /* LoginView.swift */; };
 		7F3192222602E2B100A984EA /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3192212602E2B000A984EA /* SignUpView.swift */; };
+		7F51E8042615499400A1089C /* CreateIngredientLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F51E8032615499400A1089C /* CreateIngredientLineView.swift */; };
+		7F51E80726154B2C00A1089C /* CreateIngredientLineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F51E80626154B2C00A1089C /* CreateIngredientLineViewModel.swift */; };
+		7F51E80A26154CB300A1089C /* SelectMeasurementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F51E80926154CB300A1089C /* SelectMeasurementView.swift */; };
 		7F680361260629C2008236C9 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F680360260629C2008236C9 /* HomeView.swift */; };
 		7F680369260683EE008236C9 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F680368260683EE008236C9 /* User.swift */; };
 		7F68038A260694A3008236C9 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F680389260694A3008236C9 /* ContentViewModel.swift */; };
@@ -20,7 +23,7 @@
 		7F9C3A422601949A00015724 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F9C3A412601949A00015724 /* Assets.xcassets */; };
 		7F9C3A452601949A00015724 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F9C3A442601949A00015724 /* Preview Assets.xcassets */; };
 		7F9C3A482601949A00015724 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F9C3A462601949A00015724 /* LaunchScreen.storyboard */; };
-		7FA647642605AEB900C8C127 /* RecipeApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA647632605AEB900C8C127 /* RecipeApiService.swift */; };
+		7FA647642605AEB900C8C127 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA647632605AEB900C8C127 /* ApiService.swift */; };
 		7FA647692605B4B300C8C127 /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA647682605B4B300C8C127 /* Token.swift */; };
 		7FA8E22426084C24000EC29C /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA8E22326084C24000EC29C /* KeychainService.swift */; };
 		7FA8E244260ADA2D000EC29C /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA8E243260ADA2D000EC29C /* SignUpViewModel.swift */; };
@@ -28,14 +31,20 @@
 		7FA8E24A260EB862000EC29C /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA8E249260EB862000EC29C /* MenuView.swift */; };
 		7FA8E24E260ED7AF000EC29C /* CreateRecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA8E24D260ED7AF000EC29C /* CreateRecipeView.swift */; };
 		7FA8E253260ED817000EC29C /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA8E252260ED817000EC29C /* SearchView.swift */; };
-		7FACA6AF260FBD5600C0E18A /* UserApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FACA6AE260FBD5600C0E18A /* UserApiService.swift */; };
+		7FACA6AF260FBD5600C0E18A /* UserDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FACA6AE260FBD5600C0E18A /* UserDataService.swift */; };
 		7FE704152604586B00031979 /* AuthenticationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE704142604586B00031979 /* AuthenticationView.swift */; };
+		7FF419042616A01F004F0A88 /* SelectMeasurementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FF419032616A01F004F0A88 /* SelectMeasurementViewModel.swift */; };
+		7FF419072616A679004F0A88 /* QuantityMeasurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FF419062616A679004F0A88 /* QuantityMeasurement.swift */; };
+		7FF4190A2616A7A7004F0A88 /* RecipeDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FF419092616A7A7004F0A88 /* RecipeDataService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		34FE395423355440B0BB6F6A /* Pods-ChefLifeSwiftUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChefLifeSwiftUI.release.xcconfig"; path = "Target Support Files/Pods-ChefLifeSwiftUI/Pods-ChefLifeSwiftUI.release.xcconfig"; sourceTree = "<group>"; };
 		7F31921D2602DB9200A984EA /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		7F3192212602E2B000A984EA /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		7F51E8032615499400A1089C /* CreateIngredientLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateIngredientLineView.swift; sourceTree = "<group>"; };
+		7F51E80626154B2C00A1089C /* CreateIngredientLineViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateIngredientLineViewModel.swift; sourceTree = "<group>"; };
+		7F51E80926154CB300A1089C /* SelectMeasurementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectMeasurementView.swift; sourceTree = "<group>"; };
 		7F680360260629C2008236C9 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		7F680368260683EE008236C9 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		7F680389260694A3008236C9 /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
@@ -48,7 +57,7 @@
 		7F9C3A442601949A00015724 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		7F9C3A472601949A00015724 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7F9C3A492601949A00015724 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7FA647632605AEB900C8C127 /* RecipeApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeApiService.swift; sourceTree = "<group>"; };
+		7FA647632605AEB900C8C127 /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
 		7FA647682605B4B300C8C127 /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		7FA8E22326084C24000EC29C /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
 		7FA8E243260ADA2D000EC29C /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
@@ -56,8 +65,11 @@
 		7FA8E249260EB862000EC29C /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		7FA8E24D260ED7AF000EC29C /* CreateRecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRecipeView.swift; sourceTree = "<group>"; };
 		7FA8E252260ED817000EC29C /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
-		7FACA6AE260FBD5600C0E18A /* UserApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserApiService.swift; sourceTree = "<group>"; };
+		7FACA6AE260FBD5600C0E18A /* UserDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataService.swift; sourceTree = "<group>"; };
 		7FE704142604586B00031979 /* AuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationView.swift; sourceTree = "<group>"; };
+		7FF419032616A01F004F0A88 /* SelectMeasurementViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectMeasurementViewModel.swift; sourceTree = "<group>"; };
+		7FF419062616A679004F0A88 /* QuantityMeasurement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuantityMeasurement.swift; sourceTree = "<group>"; };
+		7FF419092616A7A7004F0A88 /* RecipeDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDataService.swift; sourceTree = "<group>"; };
 		950DD36D39705C83FE1CF203 /* Pods_ChefLifeSwiftUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChefLifeSwiftUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B90E2869F36BB5BD3539FF7F /* Pods-ChefLifeSwiftUI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChefLifeSwiftUI.debug.xcconfig"; path = "Target Support Files/Pods-ChefLifeSwiftUI/Pods-ChefLifeSwiftUI.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -115,6 +127,8 @@
 				7F680389260694A3008236C9 /* ContentViewModel.swift */,
 				7F6803942607ACE8008236C9 /* LoginViewModel.swift */,
 				7FA8E243260ADA2D000EC29C /* SignUpViewModel.swift */,
+				7F51E80626154B2C00A1089C /* CreateIngredientLineViewModel.swift */,
+				7FF419032616A01F004F0A88 /* SelectMeasurementViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -187,9 +201,10 @@
 		7FA647622605AE9400C8C127 /* api */ = {
 			isa = PBXGroup;
 			children = (
-				7FA647632605AEB900C8C127 /* RecipeApiService.swift */,
+				7FA647632605AEB900C8C127 /* ApiService.swift */,
 				7FA8E246260C37E8000EC29C /* ApiConstants.swift */,
-				7FACA6AE260FBD5600C0E18A /* UserApiService.swift */,
+				7FACA6AE260FBD5600C0E18A /* UserDataService.swift */,
+				7FF419092616A7A7004F0A88 /* RecipeDataService.swift */,
 			);
 			path = api;
 			sourceTree = "<group>";
@@ -199,6 +214,7 @@
 			children = (
 				7FA647682605B4B300C8C127 /* Token.swift */,
 				7F680368260683EE008236C9 /* User.swift */,
+				7FF419062616A679004F0A88 /* QuantityMeasurement.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -215,6 +231,8 @@
 			isa = PBXGroup;
 			children = (
 				7FA8E24D260ED7AF000EC29C /* CreateRecipeView.swift */,
+				7F51E8032615499400A1089C /* CreateIngredientLineView.swift */,
+				7F51E80926154CB300A1089C /* SelectMeasurementView.swift */,
 			);
 			path = Recipe;
 			sourceTree = "<group>";
@@ -360,16 +378,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7FACA6AF260FBD5600C0E18A /* UserApiService.swift in Sources */,
-				7FA647642605AEB900C8C127 /* RecipeApiService.swift in Sources */,
+				7FACA6AF260FBD5600C0E18A /* UserDataService.swift in Sources */,
+				7FA647642605AEB900C8C127 /* ApiService.swift in Sources */,
+				7F51E80726154B2C00A1089C /* CreateIngredientLineViewModel.swift in Sources */,
 				7F9C3A3C2601949800015724 /* AppDelegate.swift in Sources */,
 				7FA8E247260C37E8000EC29C /* ApiConstants.swift in Sources */,
 				7F680361260629C2008236C9 /* HomeView.swift in Sources */,
+				7FF419042616A01F004F0A88 /* SelectMeasurementViewModel.swift in Sources */,
+				7FF4190A2616A7A7004F0A88 /* RecipeDataService.swift in Sources */,
 				7F3192222602E2B100A984EA /* SignUpView.swift in Sources */,
 				7FE704152604586B00031979 /* AuthenticationView.swift in Sources */,
+				7FF419072616A679004F0A88 /* QuantityMeasurement.swift in Sources */,
 				7F9C3A3E2601949800015724 /* SceneDelegate.swift in Sources */,
 				7FA8E24E260ED7AF000EC29C /* CreateRecipeView.swift in Sources */,
 				7FA8E244260ADA2D000EC29C /* SignUpViewModel.swift in Sources */,
+				7F51E80A26154CB300A1089C /* SelectMeasurementView.swift in Sources */,
 				7F31921E2602DB9200A984EA /* LoginView.swift in Sources */,
 				7FA8E253260ED817000EC29C /* SearchView.swift in Sources */,
 				7FA8E24A260EB862000EC29C /* MenuView.swift in Sources */,
@@ -377,6 +400,7 @@
 				7F6803952607ACE8008236C9 /* LoginViewModel.swift in Sources */,
 				7F68038A260694A3008236C9 /* ContentViewModel.swift in Sources */,
 				7F9C3A402601949800015724 /* ContentView.swift in Sources */,
+				7F51E8042615499400A1089C /* CreateIngredientLineView.swift in Sources */,
 				7F680369260683EE008236C9 /* User.swift in Sources */,
 				7FA647692605B4B300C8C127 /* Token.swift in Sources */,
 			);

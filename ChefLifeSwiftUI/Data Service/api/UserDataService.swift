@@ -9,17 +9,15 @@
 import Foundation
 import Combine
 
-private let apiService = RecipeApiService()
+private let apiService = ApiService()
 
-struct UserApiService {
+struct UserDataService {
     func getMe() -> AnyPublisher<User, Error> {
-        return apiService.combineRequest(endpoint: RecipeEndpoint.getMe.rawValue, body: nil,
+        return apiService.combineRequest(endpoint: RecipeEndpoint.userMe.rawValue, body: nil,
                                          httpMethod: HttpMethod.get.rawValue, headerFields: nil)
     }
-    func getToken(email: String, password: String) -> AnyPublisher<Token, Error> {
-        let body: [String: Any] = ["email": "\(email)", "password": "\(password)"]
-        let jsonDataBody = try! JSONSerialization.data(withJSONObject: body)
-        return apiService.combineRequest(endpoint: RecipeEndpoint.token.rawValue, body: jsonDataBody,
+    func getToken(body: Data) -> AnyPublisher<Token, Error> {
+        return apiService.combineRequest(endpoint: RecipeEndpoint.token.rawValue, body: body,
                                          httpMethod: HttpMethod.post.rawValue,
                                          headerFields: [HeaderKeys.contentType.rawValue:
                                                             HeaderValues.JSONUTF8.rawValue],

@@ -9,7 +9,7 @@
 import Foundation
 import Combine
 
-private let userService = UserApiService()
+private let userService = UserDataService()
 
 final class LoginViewModel: ObservableObject {
     let keychainService = KeychainService()
@@ -55,11 +55,15 @@ final class LoginViewModel: ObservableObject {
     @Published var password: String = ""
     private var cancellable: AnyCancellable?
     func login() {
-        guard email.count != 0, password.count != 0 else {
+        guard !email.isEmpty, !password.isEmpty else {
             return
         }
-
-        cancellable = userService.getToken(email: email, password: password)
+        let body: [String: Any] = ["email": "\(email)", "password": "\(password)"]
+        guard let jsonDataBody = try? JSONSerialization.data(withJSONObject: body) else {
+            // TODO make this an error
+            return
+        }
+        cancellable = userService.getToken(body: jsonDataBody)
             .sink(receiveCompletion: { completion in
                 switch completion {
                 // TODO make this failure case actually use the error

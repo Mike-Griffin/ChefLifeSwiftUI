@@ -11,8 +11,7 @@ import Combine
 
 let baseEndpoint = "http://127.0.0.1:8000/api/"
 
-public struct RecipeApiService {
-    // TODO make all these values (enpoint, httpMethod, headerFields) an enum instead of a string
+public struct ApiService {
     func combineRequest<T: Codable>(endpoint: String, body: Data?, httpMethod: String,
                                     headerFields: [String: String]?,
                                     useToken: Bool = true) -> AnyPublisher<T, Error> {

@@ -9,9 +9,12 @@
 import Foundation
 
 enum RecipeEndpoint: String {
-    case getMe = "user/me/"
+    // User Endpoints
+    case userMe = "user/me/"
     case token = "user/token/"
     case signup = "user/create/"
+    // Recipe Endpoints
+    case measurements = "recipe/measurements/"
 }
 
 enum HttpMethod: String {

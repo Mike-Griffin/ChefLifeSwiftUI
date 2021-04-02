@@ -18,6 +18,19 @@ struct CreateRecipeView: View {
             }
             Divider()
             Spacer()
+                .frame(height: 30)
+            HStack {
+                Text("Tags")
+            }
+            Spacer()
+                .frame(height: 30)
+            VStack {
+                Text("Ingredients")
+                NavigationLink(destination: CreateIngredientLineView()) {
+                        Text("Add Ingredient")
+                    }
+            }
+            Spacer()
             Button("Save") {
                 print("printing")
                 self.presentationMode.wrappedValue.dismiss()
