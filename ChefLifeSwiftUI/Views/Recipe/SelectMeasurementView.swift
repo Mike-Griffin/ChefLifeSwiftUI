@@ -13,15 +13,33 @@ struct SelectMeasurementView: View {
     var body: some View {
         VStack {
             SearchBarView(searchText: $viewModel.searchText, isSearching: $viewModel.isSearching)
+            if !viewModel.searchText.isEmpty &&
+                measurementsFiltered(measurements: viewModel.measurements, filterText: viewModel.searchText).isEmpty {
+                Button(action: {
+                    print("add new boi")
+                }, label: {
+                    Text("Create \(viewModel.searchText.capitalized)")
+                })
+            }
             ScrollView {
-                ForEach(viewModel.measurements) { measurement in
+                ForEach(viewModel.searchText.isEmpty ? viewModel.measurements :
+                            measurementsFiltered(measurements: viewModel.measurements,
+                                                 filterText: viewModel.searchText)) { measurement in
                     HStack {
                         Text("\(measurement.name)")
+                        Spacer()
                     }
+                    .padding()
+                    Divider()
+                        .padding(.leading)
                 }
             }
         }
     }
+}
+
+private func measurementsFiltered(measurements: [QuantityMeasurement], filterText: String) -> [QuantityMeasurement] {
+    return measurements.filter({ "\($0.name)".contains(filterText) })
 }
 
 struct SelectMeasurementView_Previews: PreviewProvider {
@@ -39,6 +57,8 @@ struct SearchBarView: View {
                 TextField("Search measurement", text: $searchText)
                     .padding(.leading, 24)
                     .padding(.vertical, -8)
+                    .autocapitalization(.none)
+                    .disableAutocorrection(true)
             }
             .padding()
             .background(Color(.systemGray5))
