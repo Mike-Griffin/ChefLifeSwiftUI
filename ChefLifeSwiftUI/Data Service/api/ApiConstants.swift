@@ -15,6 +15,7 @@ enum RecipeEndpoint: String {
     case signup = "user/create/"
     // Recipe Endpoints
     case measurements = "recipe/measurements/"
+    case ingredients = "recipe/ingredients/"
 }
 
 enum HttpMethod: String {

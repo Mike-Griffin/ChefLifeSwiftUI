@@ -14,7 +14,14 @@ private let recipeService = RecipeDataService()
 class SelectMeasurementViewModel: ObservableObject {
     @Published var searchText: String = ""
     @Published var isSearching: Bool = false
-    @Published var measurements: [QuantityMeasurement] = []
+    @Published var measurements: [QuantityMeasurement] = [] {
+        didSet {
+            for measurement in measurements {
+                selectables.append(SelectableHolder(selectable: measurement))
+            }
+        }
+    }
+    @Published var selectables: [SelectableHolder] = []
     private var cancellables = Set<AnyCancellable>()
     init() {
         getQuantityMeasurements()

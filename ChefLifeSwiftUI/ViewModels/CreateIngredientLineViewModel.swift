@@ -10,4 +10,6 @@ import Foundation
 
 class CreateIngredientLineViewModel: ObservableObject {
     @Published var quantity: String = ""
+    @Published var selectedMeasurement: QuantityMeasurement?
+    @Published var selectedIngredient: Ingredient?
 }

@@ -21,16 +21,26 @@ struct CreateIngredientLineView: View {
             HStack {
                 Text("Measurement")
                 Spacer()
-                NavigationLink(destination: SelectMeasurementView()) {
-                    Text("Select Measurement")
+                NavigationLink(destination: SelectMeasurementView(selectedMeasurement:
+                                                                    $viewModel.selectedMeasurement)) {
+                    if let measurement = viewModel.selectedMeasurement {
+                        Text("\(measurement.name)")
+                    } else {
+                        Text("Select Measurement")
+                    }
                 }
                 .padding(.horizontal)
             }
             HStack {
                 Text("Ingredient")
                 Spacer()
-                NavigationLink(destination: SelectMeasurementView()) {
-                    Text("TODO Ingredient")
+                NavigationLink(destination: SelectIngredientView(selectedIngredient:
+                                                                    $viewModel.selectedIngredient)) {
+                    if let ingredient = viewModel.selectedIngredient {
+                        Text("\(ingredient.name)")
+                    } else {
+                        Text("Select Ingredient")
+                    }
                 }
                 .padding(.horizontal)
             }

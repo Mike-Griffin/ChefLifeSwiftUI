@@ -9,12 +9,12 @@
 import SwiftUI
 
 struct CreateRecipeView: View {
-    @State var email = ""
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @ObservedObject var viewModel = CreateRecipeViewModel()
     var body: some View {
         VStack {
             HStack {
-                TextField("Title", text: $email)
+                TextField("Title", text: $viewModel.title)
             }
             Divider()
             Spacer()
