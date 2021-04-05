@@ -19,16 +19,17 @@ struct SelectIngredientView: View {
                                 didAdd: viewModel.createIngredient)
             SingleSelectListView(selectables: viewModel.selectables, searchText: viewModel.searchText,
                                  didSelect: didSelectIngredient(ingredient:))
+                .onReceive(viewModel.viewDismissalPublisher) { shouldDismiss in
+                    if shouldDismiss {
+                        selectedIngredient = viewModel.createdIngredient
+                        self.presentationMode.wrappedValue.dismiss()
+                    }
+                }
         }
     }
     private func didSelectIngredient(ingredient: SelectableHolder) {
-        print("selected ingredient \(ingredient.name)")
         selectedIngredient = viewModel.ingredients.first(where: { $0.name == ingredient.name })
-        if selectedIngredient != nil {
-            print("Ingredient id \(selectedIngredient!.id)")
-        }
         self.presentationMode.wrappedValue.dismiss()
-
     }
 }
 
@@ -37,13 +38,11 @@ private func ingredientsFiltered(ingredients: [Ingredient], filterText: String) 
     return ingredients.filter({ "\($0.name)".contains(filterText) })
 }
 
-struct SelectIngredientView_Previews: PreviewProvider {
-    @State static var ingredient: Ingredient? = Ingredient(name: "testing", id: 1)
-
-    static var previews: some View {
-        SelectIngredientView(selectedIngredient: $ingredient)
-    }
-}
+// struct SelectIngredientView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        SelectIngredientView(ingredientLine: IngredientLine(measurement: nil, quantity: nil))
+//    }
+// }
 
 private struct AddIngredientButton: View {
     var ingredients: [Ingredient]

@@ -21,7 +21,13 @@ class SelectMeasurementViewModel: ObservableObject {
             }
         }
     }
+    @Published var createdMeasurement: QuantityMeasurement? {
+        didSet {
+            viewDismissalPublisher.send(true)
+        }
+    }
     @Published var selectables: [SelectableHolder] = []
+    var viewDismissalPublisher = PassthroughSubject<Bool, Never>()
     private var cancellables = Set<AnyCancellable>()
     init() {
         getQuantityMeasurements()
@@ -35,6 +41,24 @@ class SelectMeasurementViewModel: ObservableObject {
                 }
             }, receiveValue: { (result) in
                 self.measurements = result
+            }).store(in: &cancellables)
+    }
+    func createMeasurement() {
+        let body: [String: Any] = ["name": "\(searchText)"]
+        guard let jsonDataBody = try? JSONSerialization.data(withJSONObject: body) else {
+            // TODO make this an error
+            return
+        }
+        recipeService.createMeasurement(body: jsonDataBody)
+            .sink(receiveCompletion: { completion in
+                // TODO if I'm not doing anything with the finished case I guess I should
+                // just change to be an if failure or something
+                switch completion {
+                case .failure(let error): print(error)
+                case .finished: print("publisher is finished")
+                }
+            }, receiveValue: { (result ) in
+                self.createdMeasurement = result
             }).store(in: &cancellables)
     }
 }

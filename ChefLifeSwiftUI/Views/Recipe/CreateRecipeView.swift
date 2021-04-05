@@ -26,9 +26,14 @@ struct CreateRecipeView: View {
                 .frame(height: 30)
             VStack {
                 Text("Ingredients")
-                NavigationLink(destination: CreateIngredientLineView()) {
+                NavigationLink(destination: CreateIngredientLineView(ingredientLines: $viewModel.ingredientLines)) {
                         Text("Add Ingredient")
                     }
+                ForEach(viewModel.ingredientLines) { ingredientLine in
+                    HStack {
+                        Text(ingredientLine.ingredient?.name ?? "Name Error")
+                    }
+                }
             }
             Spacer()
             Button("Save") {

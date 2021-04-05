@@ -8,6 +8,7 @@
 
 import Foundation
 import Combine
+import SwiftUI
 
 private let recipeService = RecipeDataService()
 
@@ -22,6 +23,12 @@ class SelectIngredientViewModel: ObservableObject {
         }
     }
     @Published var selectables: [SelectableHolder] = []
+    var viewDismissalPublisher = PassthroughSubject<Bool, Never>()
+    @Published var createdIngredient: Ingredient? {
+        didSet {
+            viewDismissalPublisher.send(true)
+        }
+    }
     private var cancellables = Set<AnyCancellable>()
     init() {
         getIngredients()
@@ -52,7 +59,7 @@ class SelectIngredientViewModel: ObservableObject {
                 case .finished: print("publisher is finished")
                 }
             }, receiveValue: { (result ) in
-                print(result)
+                self.createdIngredient = result
             }).store(in: &cancellables)
     }
 }

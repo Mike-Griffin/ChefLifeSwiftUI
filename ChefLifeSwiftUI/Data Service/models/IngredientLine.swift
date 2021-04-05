@@ -8,7 +8,9 @@
 
 import Foundation
 
-struct IngredientLine: Codable, Equatable {
-    let measurement: QuantityMeasurement
-    let quantity: Float
+struct IngredientLine: Codable, Equatable, Identifiable {
+    var measurement: QuantityMeasurement?
+    var ingredient: Ingredient?
+    var quantity: Float?
+    let id: Int
 }

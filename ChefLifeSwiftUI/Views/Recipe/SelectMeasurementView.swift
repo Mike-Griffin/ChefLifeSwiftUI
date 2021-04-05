@@ -15,13 +15,19 @@ struct SelectMeasurementView: View {
     var body: some View {
         VStack {
             SearchBarView(searchText: $viewModel.searchText, isSearching: $viewModel.isSearching)
-            AddMeasurementButton(measurements: viewModel.measurements, searchText: viewModel.searchText)
+            AddMeasurementButton(measurements: viewModel.measurements, searchText: viewModel.searchText,
+                                 didAdd: viewModel.createMeasurement)
             SingleSelectListView(selectables: viewModel.selectables, searchText: viewModel.searchText,
                                didSelect: didSelectMeasurement(measurement:))
+                .onReceive(viewModel.viewDismissalPublisher) { shouldDismiss in
+                    if shouldDismiss {
+                        selectedMeasurement = viewModel.createdMeasurement
+                        self.presentationMode.wrappedValue.dismiss()
+                    }
+                }
         }
     }
     private func didSelectMeasurement(measurement: SelectableHolder) {
-        print("selected \(measurement.name)")
         selectedMeasurement = viewModel.measurements.first(where: { $0.name == measurement.name })
         self.presentationMode.wrappedValue.dismiss()
     }
@@ -41,11 +47,12 @@ struct SelectMeasurementView_Previews: PreviewProvider {
 private struct AddMeasurementButton: View {
     var measurements: [QuantityMeasurement]
     var searchText: String
+    var didAdd: () -> Void
     var body: some View {
         if !searchText.isEmpty &&
             measurementsFiltered(measurements: measurements, filterText: searchText).isEmpty {
             Button(action: {
-                print("add new boi")
+                didAdd()
             }, label: {
                 Text("Create \(searchText.capitalized)")
             })

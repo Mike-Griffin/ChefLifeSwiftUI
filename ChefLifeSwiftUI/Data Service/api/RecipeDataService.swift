@@ -23,6 +23,13 @@ struct RecipeDataService {
     func createIngredient(body: Data) -> AnyPublisher<Ingredient, Error> {
         return apiService.combineRequest(endpoint: RecipeEndpoint.ingredients.rawValue, body: body,
                                          httpMethod: HttpMethod.post.rawValue,
-                                         headerFields: [HeaderKeys.contentType.rawValue: HeaderValues.JSONUTF8.rawValue])
+                                         headerFields: [HeaderKeys.contentType.rawValue:
+                                                            HeaderValues.JSONUTF8.rawValue])
+    }
+    func createMeasurement(body: Data) -> AnyPublisher<QuantityMeasurement, Error> {
+        return apiService.combineRequest(endpoint: RecipeEndpoint.measurements.rawValue, body: body,
+                                         httpMethod: HttpMethod.post.rawValue,
+                                         headerFields: [HeaderKeys.contentType.rawValue:
+                                                            HeaderValues.JSONUTF8.rawValue])
     }
 }
