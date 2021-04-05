@@ -11,4 +11,5 @@ import Foundation
 class CreateRecipeViewModel: ObservableObject {
     @Published var title: String = ""
     @Published var ingredientLines: [IngredientLine] = []
+    @Published var tags: [Tag] = []
 }

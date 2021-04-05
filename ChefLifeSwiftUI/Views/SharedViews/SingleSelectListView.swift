@@ -8,6 +8,7 @@
 
 import SwiftUI
 
+// TODO consider renaming. Need to determine if this needs to be a seperate View
 struct SingleSelectListView: View {
     var selectables: [SelectableHolder]
     var searchText: String

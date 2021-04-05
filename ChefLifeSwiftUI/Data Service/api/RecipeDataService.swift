@@ -20,6 +20,10 @@ struct RecipeDataService {
         return apiService.combineRequest(endpoint: RecipeEndpoint.ingredients.rawValue, body: nil,
                                          httpMethod: HttpMethod.get.rawValue, headerFields: nil)
     }
+    func getTags() -> AnyPublisher<[Tag], Error> {
+        return apiService.combineRequest(endpoint: RecipeEndpoint.tags.rawValue, body: nil,
+                                         httpMethod: HttpMethod.get.rawValue, headerFields: nil)
+    }
     func createIngredient(body: Data) -> AnyPublisher<Ingredient, Error> {
         return apiService.combineRequest(endpoint: RecipeEndpoint.ingredients.rawValue, body: body,
                                          httpMethod: HttpMethod.post.rawValue,

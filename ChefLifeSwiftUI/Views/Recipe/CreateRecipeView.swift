@@ -11,6 +11,7 @@ import SwiftUI
 struct CreateRecipeView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @ObservedObject var viewModel = CreateRecipeViewModel()
+    @State private var isSelectTagsShown = false
     var body: some View {
         VStack {
             HStack {
@@ -19,8 +20,26 @@ struct CreateRecipeView: View {
             Divider()
             Spacer()
                 .frame(height: 30)
-            HStack {
-                Text("Tags")
+            VStack {
+                // TODO clean up this display
+                HStack {
+                    Text("Tags")
+                    Spacer()
+                    Button(action: {
+                        isSelectTagsShown.toggle()
+                    }, label: {
+                        Text("Temp tags button")
+                    })
+                    .sheet(isPresented: $isSelectTagsShown, content: {
+                        SelectTagsView(selectedTags: $viewModel.tags)
+                    })
+                }
+                .padding()
+                ForEach(viewModel.tags) { tag in
+                    HStack {
+                        Text(tag.name)
+                    }
+                }
             }
             Spacer()
                 .frame(height: 30)
@@ -31,7 +50,9 @@ struct CreateRecipeView: View {
                     }
                 ForEach(viewModel.ingredientLines) { ingredientLine in
                     HStack {
-                        Text(ingredientLine.ingredient?.name ?? "Name Error")
+                        Text(String(describing: ingredientLine.quantity))
+                        Text(ingredientLine.measurement?.name ?? "Measurement Error")
+                        Text(ingredientLine.ingredient?.name ?? "Ingredient Error")
                     }
                 }
             }

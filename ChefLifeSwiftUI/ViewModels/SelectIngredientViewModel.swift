@@ -38,7 +38,7 @@ class SelectIngredientViewModel: ObservableObject {
             .sink(receiveCompletion: { completion in
                 switch completion {
                 case .failure(let error): print(error)
-                case .finished: print("publisher is finished")
+                case .finished: print("get ingredients publisher is finished")
                 }
             }, receiveValue: { (result) in
                 self.ingredients = result

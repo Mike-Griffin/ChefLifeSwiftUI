@@ -40,6 +40,9 @@
 		7FA8E24E260ED7AF000EC29C /* CreateRecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA8E24D260ED7AF000EC29C /* CreateRecipeView.swift */; };
 		7FA8E253260ED817000EC29C /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA8E252260ED817000EC29C /* SearchView.swift */; };
 		7FACA6AF260FBD5600C0E18A /* UserDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FACA6AE260FBD5600C0E18A /* UserDataService.swift */; };
+		7FB3DCAB261AC9850025FBE5 /* SelectTagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB3DCAA261AC9850025FBE5 /* SelectTagsView.swift */; };
+		7FB3DCAE261ACAC90025FBE5 /* SelectTagsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB3DCAD261ACAC90025FBE5 /* SelectTagsViewModel.swift */; };
+		7FB3DCB1261ACAF50025FBE5 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB3DCB0261ACAF50025FBE5 /* Tag.swift */; };
 		7FE704152604586B00031979 /* AuthenticationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE704142604586B00031979 /* AuthenticationView.swift */; };
 		7FF419042616A01F004F0A88 /* SelectMeasurementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FF419032616A01F004F0A88 /* SelectMeasurementViewModel.swift */; };
 		7FF419072616A679004F0A88 /* QuantityMeasurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FF419062616A679004F0A88 /* QuantityMeasurement.swift */; };
@@ -82,6 +85,9 @@
 		7FA8E24D260ED7AF000EC29C /* CreateRecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRecipeView.swift; sourceTree = "<group>"; };
 		7FA8E252260ED817000EC29C /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		7FACA6AE260FBD5600C0E18A /* UserDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataService.swift; sourceTree = "<group>"; };
+		7FB3DCAA261AC9850025FBE5 /* SelectTagsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectTagsView.swift; sourceTree = "<group>"; };
+		7FB3DCAD261ACAC90025FBE5 /* SelectTagsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectTagsViewModel.swift; sourceTree = "<group>"; };
+		7FB3DCB0261ACAF50025FBE5 /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		7FE704142604586B00031979 /* AuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationView.swift; sourceTree = "<group>"; };
 		7FF419032616A01F004F0A88 /* SelectMeasurementViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectMeasurementViewModel.swift; sourceTree = "<group>"; };
 		7FF419062616A679004F0A88 /* QuantityMeasurement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuantityMeasurement.swift; sourceTree = "<group>"; };
@@ -147,6 +153,7 @@
 				7F51E80626154B2C00A1089C /* CreateIngredientLineViewModel.swift */,
 				7FF419032616A01F004F0A88 /* SelectMeasurementViewModel.swift */,
 				7F886C032618F03700DEED6B /* SelectIngredientViewModel.swift */,
+				7FB3DCAD261ACAC90025FBE5 /* SelectTagsViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -246,6 +253,7 @@
 				7F886BF42618C62D00DEED6B /* SelectableType.swift */,
 				7FF419062616A679004F0A88 /* QuantityMeasurement.swift */,
 				7F886C062618F05C00DEED6B /* Ingredient.swift */,
+				7FB3DCB0261ACAF50025FBE5 /* Tag.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -265,6 +273,7 @@
 				7F51E8032615499400A1089C /* CreateIngredientLineView.swift */,
 				7F51E80926154CB300A1089C /* SelectMeasurementView.swift */,
 				7F886C002618EFF200DEED6B /* SelectIngredientView.swift */,
+				7FB3DCAA261AC9850025FBE5 /* SelectTagsView.swift */,
 			);
 			path = Recipe;
 			sourceTree = "<group>";
@@ -415,6 +424,7 @@
 				7F51E80726154B2C00A1089C /* CreateIngredientLineViewModel.swift in Sources */,
 				7F9C3A3C2601949800015724 /* AppDelegate.swift in Sources */,
 				7F6D00B42617EECE00020D43 /* CreateRecipeViewModel.swift in Sources */,
+				7FB3DCAE261ACAC90025FBE5 /* SelectTagsViewModel.swift in Sources */,
 				7FA8E247260C37E8000EC29C /* ApiConstants.swift in Sources */,
 				7F680361260629C2008236C9 /* HomeView.swift in Sources */,
 				7FF419042616A01F004F0A88 /* SelectMeasurementViewModel.swift in Sources */,
@@ -433,8 +443,10 @@
 				7F886BF92618EDBB00DEED6B /* SearchBarView.swift in Sources */,
 				7FA8E253260ED817000EC29C /* SearchView.swift in Sources */,
 				7FA8E24A260EB862000EC29C /* MenuView.swift in Sources */,
+				7FB3DCB1261ACAF50025FBE5 /* Tag.swift in Sources */,
 				7F886C012618EFF200DEED6B /* SelectIngredientView.swift in Sources */,
 				7FA8E22426084C24000EC29C /* KeychainService.swift in Sources */,
+				7FB3DCAB261AC9850025FBE5 /* SelectTagsView.swift in Sources */,
 				7F886BF52618C62D00DEED6B /* SelectableType.swift in Sources */,
 				7F6803952607ACE8008236C9 /* LoginViewModel.swift in Sources */,
 				7F68038A260694A3008236C9 /* ContentViewModel.swift in Sources */,
