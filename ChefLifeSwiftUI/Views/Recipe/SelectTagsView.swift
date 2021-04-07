@@ -14,7 +14,8 @@ struct SelectTagsView: View {
     @Binding var selectedTags: [Tag]
     var body: some View {
         NavigationView {
-            SingleSelectListView(selectables: viewModel.selectables, searchText: viewModel.searchText, didSelect: didSelectTag(tag:))
+            SingleSelectListView(selectables: viewModel.selectables, searchText: viewModel.searchText,
+                                 didSelect: didSelectTag(tag:))
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
                     Button(action: {

@@ -14,6 +14,7 @@ enum RecipeEndpoint: String {
     case token = "user/token/"
     case signup = "user/create/"
     // Recipe Endpoints
+    case recipes = "recipe/recipes/"
     case measurements = "recipe/measurements/"
     case ingredients = "recipe/ingredients/"
     case tags = "recipe/tags/"
@@ -31,4 +32,5 @@ enum HeaderKeys: String {
 
 enum HeaderValues: String {
     case JSONUTF8 = "application/json; charset=utf-8"
+    case JSON = "application/json"
 }

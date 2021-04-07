@@ -43,6 +43,7 @@
 		7FB3DCAB261AC9850025FBE5 /* SelectTagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB3DCAA261AC9850025FBE5 /* SelectTagsView.swift */; };
 		7FB3DCAE261ACAC90025FBE5 /* SelectTagsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB3DCAD261ACAC90025FBE5 /* SelectTagsViewModel.swift */; };
 		7FB3DCB1261ACAF50025FBE5 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB3DCB0261ACAF50025FBE5 /* Tag.swift */; };
+		7FB3DCB8261D45820025FBE5 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB3DCB7261D45820025FBE5 /* Recipe.swift */; };
 		7FE704152604586B00031979 /* AuthenticationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE704142604586B00031979 /* AuthenticationView.swift */; };
 		7FF419042616A01F004F0A88 /* SelectMeasurementViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FF419032616A01F004F0A88 /* SelectMeasurementViewModel.swift */; };
 		7FF419072616A679004F0A88 /* QuantityMeasurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FF419062616A679004F0A88 /* QuantityMeasurement.swift */; };
@@ -88,6 +89,7 @@
 		7FB3DCAA261AC9850025FBE5 /* SelectTagsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectTagsView.swift; sourceTree = "<group>"; };
 		7FB3DCAD261ACAC90025FBE5 /* SelectTagsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectTagsViewModel.swift; sourceTree = "<group>"; };
 		7FB3DCB0261ACAF50025FBE5 /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
+		7FB3DCB7261D45820025FBE5 /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
 		7FE704142604586B00031979 /* AuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationView.swift; sourceTree = "<group>"; };
 		7FF419032616A01F004F0A88 /* SelectMeasurementViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectMeasurementViewModel.swift; sourceTree = "<group>"; };
 		7FF419062616A679004F0A88 /* QuantityMeasurement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuantityMeasurement.swift; sourceTree = "<group>"; };
@@ -254,6 +256,7 @@
 				7FF419062616A679004F0A88 /* QuantityMeasurement.swift */,
 				7F886C062618F05C00DEED6B /* Ingredient.swift */,
 				7FB3DCB0261ACAF50025FBE5 /* Tag.swift */,
+				7FB3DCB7261D45820025FBE5 /* Recipe.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -441,6 +444,7 @@
 				7F6D00B72617EEF900020D43 /* IngredientLine.swift in Sources */,
 				7F31921E2602DB9200A984EA /* LoginView.swift in Sources */,
 				7F886BF92618EDBB00DEED6B /* SearchBarView.swift in Sources */,
+				7FB3DCB8261D45820025FBE5 /* Recipe.swift in Sources */,
 				7FA8E253260ED817000EC29C /* SearchView.swift in Sources */,
 				7FA8E24A260EB862000EC29C /* MenuView.swift in Sources */,
 				7FB3DCB1261ACAF50025FBE5 /* Tag.swift in Sources */,

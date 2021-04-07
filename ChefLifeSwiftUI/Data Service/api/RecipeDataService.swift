@@ -36,4 +36,10 @@ struct RecipeDataService {
                                          headerFields: [HeaderKeys.contentType.rawValue:
                                                             HeaderValues.JSONUTF8.rawValue])
     }
+    func createRecipe(body: Data) -> AnyPublisher<Recipe, Error> {
+        return apiService.combineRequest(endpoint: RecipeEndpoint.recipes.rawValue, body: body,
+                                         httpMethod: HttpMethod.post.rawValue,
+                                         headerFields: [HeaderKeys.contentType.rawValue:
+                                                            HeaderValues.JSON.rawValue])
+    }
 }

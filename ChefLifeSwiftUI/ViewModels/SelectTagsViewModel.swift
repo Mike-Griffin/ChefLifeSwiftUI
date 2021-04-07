@@ -11,7 +11,6 @@ import Combine
 
 private let recipeService = RecipeDataService()
 
-
 class SelectTagsViewModel: ObservableObject {
     @Published var tags: [Tag] = [] {
         didSet {

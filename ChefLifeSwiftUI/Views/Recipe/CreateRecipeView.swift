@@ -58,7 +58,7 @@ struct CreateRecipeView: View {
             }
             Spacer()
             Button("Save") {
-                print("printing")
+                viewModel.createRecipe()
                 self.presentationMode.wrappedValue.dismiss()
             }
         }
