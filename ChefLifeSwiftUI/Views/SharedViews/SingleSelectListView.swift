@@ -9,7 +9,11 @@
 import SwiftUI
 
 // TODO consider renaming. Need to determine if this needs to be a seperate View
+// The thing that is different is that the selected needs to be a single selectable in this view
+// and an array in another. But I guess it doesn't hurt to make it an array in both.
+// It's just a bit more code to write
 struct SingleSelectListView: View {
+    var selected: [SelectableHolder]
     var selectables: [SelectableHolder]
     var searchText: String
     var didSelect: (SelectableHolder) -> Void
@@ -23,7 +27,11 @@ struct SingleSelectListView: View {
                     Button(action: {
                         didSelect(selectable)
                     }, label: {
-                        Text("Select")
+                        if selected.contains(where: { $0.name == selectable.name }) {
+                            Text("Selected")
+                        } else {
+                            Text("Select")
+                        }
                     })
                 }
                 .padding()

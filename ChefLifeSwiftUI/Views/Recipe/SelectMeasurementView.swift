@@ -17,14 +17,21 @@ struct SelectMeasurementView: View {
             SearchBarView(searchText: $viewModel.searchText, isSearching: $viewModel.isSearching)
             AddMeasurementButton(measurements: viewModel.measurements, searchText: viewModel.searchText,
                                  didAdd: viewModel.createMeasurement)
-            SingleSelectListView(selectables: viewModel.selectables, searchText: viewModel.searchText,
-                               didSelect: didSelectMeasurement(measurement:))
-                .onReceive(viewModel.viewDismissalPublisher) { shouldDismiss in
-                    if shouldDismiss {
-                        selectedMeasurement = viewModel.createdMeasurement
-                        self.presentationMode.wrappedValue.dismiss()
-                    }
-                }
+            if let selected = viewModel.selectables.first(where: { $0.name == selectedMeasurement?.name }) {
+                SingleSelectListView(selected: [selected], selectables: viewModel.selectables,
+                                   searchText: viewModel.searchText,
+                                 didSelect: didSelectMeasurement(measurement:))
+            } else {
+                SingleSelectListView(selected: [], selectables: viewModel.selectables,
+                                   searchText: viewModel.searchText,
+                                 didSelect: didSelectMeasurement(measurement:))
+            }
+        }
+        .onReceive(viewModel.viewDismissalPublisher) { shouldDismiss in
+            if shouldDismiss {
+                selectedMeasurement = viewModel.createdMeasurement
+                self.presentationMode.wrappedValue.dismiss()
+            }
         }
     }
     private func didSelectMeasurement(measurement: SelectableHolder) {

@@ -14,8 +14,19 @@ struct SelectTagsView: View {
     @Binding var selectedTags: [Tag]
     var body: some View {
         NavigationView {
-            SingleSelectListView(selectables: viewModel.selectables, searchText: viewModel.searchText,
-                                 didSelect: didSelectTag(tag:))
+            VStack {
+            // TODO clean it up so I'm not force unwrapping
+                if let selected = selectedTags.map({ tag in
+                                                    self.viewModel.selectables.first(where: {$0.name == tag.name })!}) {
+                    SingleSelectListView(selected: selected, selectables: viewModel.selectables,
+                                         searchText: viewModel.searchText,
+                                         didSelect: didSelectTag(tag:))
+                } else {
+                    SingleSelectListView(selected: [], selectables: viewModel.selectables,
+                                         searchText: viewModel.searchText,
+                                         didSelect: didSelectTag(tag:))
+                }
+            }
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
                     Button(action: {
@@ -28,6 +39,7 @@ struct SelectTagsView: View {
         }
     }
     private func didSelectTag(tag: SelectableHolder) {
+        // TODO add logic for deselecting
         if let tag = viewModel.tags.first(where: { $0.name == tag.name }) {
             selectedTags.append(tag)
         }

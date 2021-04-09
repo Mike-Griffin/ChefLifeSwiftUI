@@ -17,14 +17,21 @@ struct SelectIngredientView: View {
             SearchBarView(searchText: $viewModel.searchText, isSearching: $viewModel.isSearching)
             AddIngredientButton(ingredients: viewModel.ingredients, searchText: viewModel.searchText,
                                 didAdd: viewModel.createIngredient)
-            SingleSelectListView(selectables: viewModel.selectables, searchText: viewModel.searchText,
+            if let selected = viewModel.selectables.first(where: { $0.name == selectedIngredient?.name }) {
+                SingleSelectListView(selected: [selected], selectables: viewModel.selectables,
+                                   searchText: viewModel.searchText,
                                  didSelect: didSelectIngredient(ingredient:))
-                .onReceive(viewModel.viewDismissalPublisher) { shouldDismiss in
-                    if shouldDismiss {
-                        selectedIngredient = viewModel.createdIngredient
-                        self.presentationMode.wrappedValue.dismiss()
-                    }
-                }
+            } else {
+                SingleSelectListView(selected: [], selectables: viewModel.selectables,
+                                   searchText: viewModel.searchText,
+                                 didSelect: didSelectIngredient(ingredient:))
+            }
+        }
+        .onReceive(viewModel.viewDismissalPublisher) { shouldDismiss in
+            if shouldDismiss {
+                selectedIngredient = viewModel.createdIngredient
+                self.presentationMode.wrappedValue.dismiss()
+            }
         }
     }
     private func didSelectIngredient(ingredient: SelectableHolder) {
