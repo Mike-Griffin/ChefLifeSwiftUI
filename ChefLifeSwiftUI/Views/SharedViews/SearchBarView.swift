@@ -14,7 +14,7 @@ struct SearchBarView: View {
     var body: some View {
         HStack {
             HStack {
-                TextField("Search measurement", text: $searchText)
+                TextField("Search", text: $searchText)
                     .padding(.leading, 24)
                     .padding(.vertical, -8)
                     .autocapitalization(.none)

@@ -16,9 +16,6 @@ enum PasswordStatus {
     case valid
 }
 
-private let apiService = ApiService()
-private let userService = UserDataService()
-
 class SignUpViewModel: ObservableObject {
     let keychainService = KeychainService()
 
@@ -125,11 +122,7 @@ class SignUpViewModel: ObservableObject {
         guard formValid else { return }
         let body: [String: Any] = ["name": "\(name)", "email": "\(email)", "password": "\(password)"]
         if let jsonDataBody = try? JSONSerialization.data(withJSONObject: body) {
-        apiService.combineRequest(endpoint: RecipeEndpoint.signup.rawValue, body: jsonDataBody,
-                                  httpMethod: HttpMethod.post.rawValue,
-                                  headerFields: [HeaderKeys.contentType.rawValue:
-                                                    HeaderValues.JSONUTF8.rawValue],
-                                  useToken: false)
+            userService.signUp(body: jsonDataBody)
                 .sink(receiveCompletion: { completion in
                     switch completion {
                     // TODO make this failure case actually use the error

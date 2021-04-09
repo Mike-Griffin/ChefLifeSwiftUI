@@ -9,36 +9,28 @@
 import Foundation
 import Combine
 
-private let apiService = ApiService()
-
 struct RecipeDataService {
     func getMeasurements() -> AnyPublisher<[QuantityMeasurement], Error> {
-        return apiService.combineRequest(endpoint: RecipeEndpoint.measurements.rawValue, body: nil,
-                                         httpMethod: HttpMethod.get.rawValue, headerFields: nil)
+        return apiService.fetch(endpoint: RecipeEndpoint.measurements.rawValue, headerFields: nil)
     }
     func getIngredients() -> AnyPublisher<[Ingredient], Error> {
-        return apiService.combineRequest(endpoint: RecipeEndpoint.ingredients.rawValue, body: nil,
-                                         httpMethod: HttpMethod.get.rawValue, headerFields: nil)
+        return apiService.fetch(endpoint: RecipeEndpoint.ingredients.rawValue, headerFields: nil)
     }
     func getTags() -> AnyPublisher<[Tag], Error> {
-        return apiService.combineRequest(endpoint: RecipeEndpoint.tags.rawValue, body: nil,
-                                         httpMethod: HttpMethod.get.rawValue, headerFields: nil)
+        return apiService.fetch(endpoint: RecipeEndpoint.tags.rawValue, headerFields: nil)
     }
     func createIngredient(body: Data) -> AnyPublisher<Ingredient, Error> {
-        return apiService.combineRequest(endpoint: RecipeEndpoint.ingredients.rawValue, body: body,
-                                         httpMethod: HttpMethod.post.rawValue,
+        return apiService.post(endpoint: RecipeEndpoint.ingredients.rawValue, body: body,
                                          headerFields: [HeaderKeys.contentType.rawValue:
                                                             HeaderValues.JSONUTF8.rawValue])
     }
     func createMeasurement(body: Data) -> AnyPublisher<QuantityMeasurement, Error> {
-        return apiService.combineRequest(endpoint: RecipeEndpoint.measurements.rawValue, body: body,
-                                         httpMethod: HttpMethod.post.rawValue,
+        return apiService.post(endpoint: RecipeEndpoint.measurements.rawValue, body: body,
                                          headerFields: [HeaderKeys.contentType.rawValue:
                                                             HeaderValues.JSONUTF8.rawValue])
     }
     func createRecipe(body: Data) -> AnyPublisher<Recipe, Error> {
-        return apiService.combineRequest(endpoint: RecipeEndpoint.recipes.rawValue, body: body,
-                                         httpMethod: HttpMethod.post.rawValue,
+        return apiService.post(endpoint: RecipeEndpoint.recipes.rawValue, body: body,
                                          headerFields: [HeaderKeys.contentType.rawValue:
                                                             HeaderValues.JSON.rawValue])
     }

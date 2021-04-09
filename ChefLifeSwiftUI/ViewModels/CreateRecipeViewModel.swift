@@ -22,9 +22,11 @@ class CreateRecipeViewModel: ObservableObject {
             // TODO add an error
             return
         }
-        let mappedTags = tags.map( { $0.id })
+        let mappedTags = tags.map({ $0.id })
         print(mappedTags)
-        let mappedIngredients = ingredientLines.map( { ["order": $0.id, "quantity": $0.quantity!, "ingredient": $0.ingredient!.id, "measurement": $0.measurement!.id] })
+        let mappedIngredients = ingredientLines.map({ ["order": $0.id, "quantity": $0.quantity!,
+                                                        "ingredient": $0.ingredient!.id,
+                                                        "measurement": $0.measurement!.id] })
         print(mappedIngredients)
          let body: [String: Any] = ["title": "\(title)", "tags": mappedTags, "ingredientLines": mappedIngredients]
         guard let jsonDataBody = try? JSONSerialization.data(withJSONObject: body) else {

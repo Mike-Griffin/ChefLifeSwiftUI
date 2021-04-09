@@ -9,18 +9,23 @@
 import Foundation
 import Combine
 
-private let apiService = ApiService()
+let userService = UserDataService()
 
 struct UserDataService {
     func getMe() -> AnyPublisher<User, Error> {
-        return apiService.combineRequest(endpoint: RecipeEndpoint.userMe.rawValue, body: nil,
-                                         httpMethod: HttpMethod.get.rawValue, headerFields: nil)
+        return apiService.fetch(endpoint: RecipeEndpoint.userMe.rawValue,
+                                headerFields: nil)
     }
     func getToken(body: Data) -> AnyPublisher<Token, Error> {
-        return apiService.combineRequest(endpoint: RecipeEndpoint.token.rawValue, body: body,
-                                         httpMethod: HttpMethod.post.rawValue,
+        return apiService.post(endpoint: RecipeEndpoint.token.rawValue, body: body,
                                          headerFields: [HeaderKeys.contentType.rawValue:
                                                             HeaderValues.JSONUTF8.rawValue],
                                          useToken: false)
+    }
+    func signUp(body: Data) -> AnyPublisher<User, Error> {
+        return apiService.post(endpoint: RecipeEndpoint.signup.rawValue, body: body,
+                              headerFields: [HeaderKeys.contentType.rawValue:
+                                                HeaderValues.JSONUTF8.rawValue],
+                              useToken: false)
     }
 }

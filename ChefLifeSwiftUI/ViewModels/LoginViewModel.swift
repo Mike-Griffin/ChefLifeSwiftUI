@@ -9,8 +9,6 @@
 import Foundation
 import Combine
 
-private let userService = UserDataService()
-
 final class LoginViewModel: ObservableObject {
     let keychainService = KeychainService()
 
