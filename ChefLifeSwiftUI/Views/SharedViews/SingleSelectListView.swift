@@ -28,7 +28,7 @@ struct SingleSelectListView: View {
                         didSelect(selectable)
                     }, label: {
                         if selected.contains(where: { $0.name == selectable.name }) {
-                            Text("Selected")
+                            Image(systemName: "checkmark.circle")
                         } else {
                             Text("Select")
                         }

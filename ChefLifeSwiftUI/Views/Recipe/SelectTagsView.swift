@@ -39,9 +39,12 @@ struct SelectTagsView: View {
         }
     }
     private func didSelectTag(tag: SelectableHolder) {
-        // TODO add logic for deselecting
         if let tag = viewModel.tags.first(where: { $0.name == tag.name }) {
-            selectedTags.append(tag)
+            if let index = selectedTags.firstIndex(of: tag) {
+                selectedTags.remove(at: index)
+            } else {
+                selectedTags.append(tag)
+            }
         }
     }
 }
