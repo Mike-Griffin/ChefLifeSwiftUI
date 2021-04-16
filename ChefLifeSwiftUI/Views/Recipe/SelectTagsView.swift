@@ -15,6 +15,9 @@ struct SelectTagsView: View {
     var body: some View {
         NavigationView {
             VStack {
+                SearchBarView(searchText: $viewModel.searchText, isSearching: $viewModel.isSearching)
+                AddTagsButton(tags: viewModel.tags, searchText: viewModel.searchText,
+                              didAdd: viewModel.createTag)
             // TODO clean it up so I'm not force unwrapping
                 if let selected = selectedTags.map({ tag in
                                                     self.viewModel.selectables.first(where: {$0.name == tag.name })!}) {
@@ -36,6 +39,9 @@ struct SelectTagsView: View {
                     })
                 }
             }
+            .onReceive(viewModel.createdTagPublisher) { tag in
+                selectedTags.append(tag)
+            }
         }
     }
     private func didSelectTag(tag: SelectableHolder) {
@@ -45,6 +51,26 @@ struct SelectTagsView: View {
             } else {
                 selectedTags.append(tag)
             }
+        }
+    }
+}
+// TODO consider splitting this out to a helper class
+private func tagsFiltered(tags: [Tag], filterText: String) -> [Tag] {
+    return tags.filter({ "\($0.name)".contains(filterText) })
+}
+
+private struct AddTagsButton: View {
+    var tags: [Tag]
+    var searchText: String
+    var didAdd: () -> Void
+    var body: some View {
+        if !searchText.isEmpty &&
+            tagsFiltered(tags: tags, filterText: searchText).isEmpty {
+            Button(action: {
+                didAdd()
+            }, label: {
+                Text("Create \(searchText.capitalized)")
+            })
         }
     }
 }

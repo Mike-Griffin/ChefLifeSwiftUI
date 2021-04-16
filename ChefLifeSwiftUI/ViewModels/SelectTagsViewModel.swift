@@ -12,6 +12,15 @@ import Combine
 private let recipeService = RecipeDataService()
 
 class SelectTagsViewModel: ObservableObject {
+    @Published var createdTag: Tag? {
+        didSet {
+            if let tag = createdTag {
+                tags.append(tag)
+                createdTagPublisher.send(tag)
+            }
+        }
+    }
+    var createdTagPublisher = PassthroughSubject<Tag, Never>()
     @Published var tags: [Tag] = [] {
         didSet {
             for tag in tags {
@@ -21,6 +30,7 @@ class SelectTagsViewModel: ObservableObject {
     }
     @Published var selectables: [SelectableHolder] = []
     @Published var searchText: String = ""
+    @Published var isSearching: Bool = false
     private var cancellables = Set<AnyCancellable>()
     init() {
         getTags()
@@ -34,6 +44,24 @@ class SelectTagsViewModel: ObservableObject {
                 }
             }, receiveValue: { (result) in
                 self.tags = result
+            }).store(in: &cancellables)
+    }
+    func createTag() {
+        let body: [String: Any] = ["name": "\(searchText)"]
+        guard let jsonDataBody = try? JSONSerialization.data(withJSONObject: body) else {
+            // TODO make this an error
+            return
+        }
+        recipeService.createTag(body: jsonDataBody)
+            .sink(receiveCompletion: { completion in
+                // TODO if I'm not doing anything with the finished case I guess I should
+                // just change to be an if failure or something
+                switch completion {
+                case .failure(let error): print(error)
+                case .finished: print("create tag publisher is finished")
+                }
+            }, receiveValue: { (result) in
+                self.createdTag = result
             }).store(in: &cancellables)
     }
 }

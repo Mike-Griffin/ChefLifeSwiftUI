@@ -55,7 +55,7 @@ class SelectMeasurementViewModel: ObservableObject {
                 // just change to be an if failure or something
                 switch completion {
                 case .failure(let error): print(error)
-                case .finished: print("publisher is finished")
+                case .finished: print("create measurement publisher is finished")
                 }
             }, receiveValue: { (result ) in
                 self.createdMeasurement = result

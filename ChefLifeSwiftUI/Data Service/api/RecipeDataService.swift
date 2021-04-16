@@ -34,4 +34,9 @@ struct RecipeDataService {
                                          headerFields: [HeaderKeys.contentType.rawValue:
                                                             HeaderValues.JSON.rawValue])
     }
+    func createTag(body: Data) -> AnyPublisher<Tag, Error> {
+        return apiService.post(endpoint: RecipeEndpoint.tags.rawValue, body: body,
+                                         headerFields: [HeaderKeys.contentType.rawValue:
+                                                            HeaderValues.JSON.rawValue])
+    }
 }
